@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="REVO Match Circular conecta productos derivados de neumáticos fuera de uso con empresas que buscan soluciones sostenibles, técnicas y trazables." />
+  <title>REVO Match Circular | Productos de NFU para empresas</title>
+  <style>
+    :root{
+      --bg:#f7faf8;
+      --surface:#ffffff;
+      --surface-2:#eef6f1;
+      --text:#16231d;
+      --muted:#65736c;
+      --line:#dbe7e0;
+      --brand:#168a58;
+      --brand-dark:#0d5e3c;
+      --brand-soft:#e7f6ef;
+      --accent:#efb43f;
+      --danger:#cf4b4b;
+      --shadow:0 18px 48px rgba(19,73,49,.10);
+      --radius:22px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.55;
+    }
+
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    img{max-width:100%}
+    a{text-decoration:none;color:inherit}
+
+    .container{width:min(1180px,calc(100% - 32px));margin:auto}
+    .section{padding:88px 0}
+    .section.alt{background:var(--surface-2)}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 11px;
+      border-radius:999px;
+      background:var(--brand-soft);
+      color:var(--brand-dark);
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.02em;
+    }
+    .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand)}
+    h1,h2,h3{line-height:1.08;margin:0}
+    h1{font-size:clamp(42px,6vw,74px);letter-spacing:-.045em}
+    h2{font-size:clamp(32px,4vw,52px);letter-spacing:-.035em}
+    h3{font-size:22px}
+    p{margin:0}
+    .muted{color:var(--muted)}
+    .lead{font-size:clamp(18px,2vw,22px);color:var(--muted);max-width:740px}
+
+    .btn{
+      border:0;
+      border-radius:14px;
+      padding:14px 20px;
+      font-weight:800;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      transition:.2s;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn.primary{background:var(--brand);color:#fff;box-shadow:0 12px 28px rgba(22,138,88,.24)}
+    .btn.secondary{background:#fff;border:1px solid var(--line);color:var(--text)}
+    .btn.dark{background:#133a2b;color:#fff}
+    .btn.small{padding:10px 14px;font-size:14px}
+
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(247,250,248,.88);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(219,231,224,.8);
+    }
+    .nav{
+      height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:22px;
+    }
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+    .logo-mark{
+      width:42px;height:42px;border-radius:13px;
+      background:linear-gradient(145deg,#35c17f,var(--brand));
+      display:grid;place-items:center;color:#fff;font-size:20px;
+      box-shadow:0 8px 22px rgba(22,138,88,.22)
+    }
+    .logo small{display:block;font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.03em}
+    .nav-links{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:750}
+    .nav-links a:hover{color:var(--brand)}
+    .menu-btn{display:none;border:1px solid var(--line);background:#fff;width:42px;height:42px;border-radius:12px}
+
+    .hero{
+      padding:86px 0 64px;
+      background:
+        radial-gradient(circle at 80% 10%,rgba(53,193,127,.18),transparent 28%),
+        radial-gradient(circle at 15% 10%,rgba(239,180,63,.13),transparent 25%),
+        linear-gradient(180deg,#fbfdfc,#f7faf8);
+      overflow:hidden;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr .92fr;
+      gap:56px;
+      align-items:center;
+    }
+    .hero-copy{display:grid;gap:25px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .trust-row{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px;font-weight:700}
+    .trust-row span{display:flex;align-items:center;gap:7px}
+    .trust-row i{width:20px;height:20px;border-radius:50%;background:var(--brand-soft);display:grid;place-items:center;color:var(--brand);font-style:normal}
+
+    .hero-visual{
+      position:relative;
+      min-height:540px;
+      display:grid;
+      place-items:center;
+    }
+    .hero-orbit{
+      width:min(500px,100%);
+      aspect-ratio:1;
+      border-radius:50%;
+      background:radial-gradient(circle,#fff 0 42%,#e8f5ee 43% 64%,transparent 65%);
+      position:relative;
+      box-shadow:inset 0 0 0 1px rgba(22,138,88,.07);
+    }
+    .center-card{
+      position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
+      width:210px;height:210px;border-radius:50%;
+      background:linear-gradient(145deg,#153d2d,#0d5f3d);
+      display:grid;place-items:center;text-align:center;color:#fff;padding:28px;
+      box-shadow:0 24px 60px rgba(13,94,60,.28);
+    }
+    .center-card strong{font-size:28px;display:block}
+    .center-card small{color:#cce5d7}
+    .orbit-item{
+      position:absolute;width:148px;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow)
+    }
+    .orbit-item b{display:block;margin-bottom:4px}
+    .orbit-item small{color:var(--muted)}
+    .orbit-item .icon{width:42px;height:42px;border-radius:13px;background:var(--brand-soft);display:grid;place-items:center;font-size:20px;margin-bottom:9px}
+    .o1{top:4%;left:34%}.o2{right:-2%;top:34%}.o3{right:10%;bottom:4%}.o4{left:4%;bottom:8%}.o5{left:-7%;top:35%}
+
+    .stats{
+      margin-top:34px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+    .stat{
+      background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;
+      box-shadow:0 10px 28px rgba(19,73,49,.05)
+    }
+    .stat strong{font-size:28px;display:block}
+    .stat span{font-size:13px;color:var(--muted)}
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:24px;
+      margin-bottom:34px;
+    }
+    .section-head .copy{display:grid;gap:13px;max-width:760px}
+
+    .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .problem-card,.feature-card,.product-card,.sector-card,.case-card{
+      background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)
+    }
+    .problem-card{padding:24px}
+    .problem-card .num{font-size:13px;font-weight:900;color:var(--brand);margin-bottom:18px}
+    .problem-card p{color:var(--muted);margin-top:10px}
+
+    .solution-band{
+      background:#123d2e;
+      color:#fff;
+      border-radius:28px;
+      padding:34px;
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:26px;
+      align-items:center;
+    }
+    .solution-band p{color:#cfe2d8;margin-top:10px;max-width:760px}
+
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:34px}
+    .feature-card{padding:22px}
+    .feature-card .feature-icon{width:48px;height:48px;border-radius:15px;background:var(--brand-soft);display:grid;place-items:center;font-size:22px;margin-bottom:16px}
+    .feature-card p{color:var(--muted);margin-top:8px;font-size:14px}
+
+    .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+    .filter-btn{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:999px;font-weight:800;color:var(--muted)}
+    .filter-btn.active,.filter-btn:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+    .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .product-card{overflow:hidden;display:flex;flex-direction:column}
+    .product-art{
+      min-height:210px;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.7),transparent 30%),
+        linear-gradient(145deg,#dff2e8,#eef6f1);
+      position:relative;
+      overflow:hidden;
+    }
+    .product-art::before{
+      content:"";position:absolute;width:180px;height:180px;border-radius:50%;
+      border:24px solid #1b2520;opacity:.13;transform:rotate(18deg)
+    }
+    .product-shape{font-size:72px;position:relative;z-index:2;filter:drop-shadow(0 12px 12px rgba(0,0,0,.13))}
+    .product-body{padding:22px;display:grid;gap:12px;flex:1}
+    .tags{display:flex;gap:7px;flex-wrap:wrap}
+    .tag{font-size:11px;font-weight:850;background:var(--brand-soft);color:var(--brand-dark);padding:6px 8px;border-radius:999px}
+    .product-body p{color:var(--muted);font-size:14px}
+    .product-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto}
+    .match{font-size:13px;font-weight:850;color:var(--brand)}
+
+    .sector-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .sector-card{padding:20px;text-align:center}
+    .sector-card span{font-size:30px;display:block;margin-bottom:12px}
+    .sector-card small{color:var(--muted);display:block;margin-top:6px}
+
+    .how{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .how-step{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+    .how-step .step{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:900;margin-bottom:16px}
+    .how-step p{color:var(--muted);margin-top:8px;font-size:14px}
+    .how-step:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:46%;font-size:26px;color:var(--brand);font-weight:900;z-index:3}
+
+    .quote-wrap{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:24px;
+      align-items:start;
+    }
+    .quote-info{
+      background:linear-gradient(145deg,#153d2d,#0e5e3d);
+      color:#fff;border-radius:26px;padding:30px;position:sticky;top:96px
+    }
+    .quote-info p{color:#d2e5db;margin:14px 0 22px}
+    .quote-points{display:grid;gap:13px}
+    .quote-point{display:flex;gap:10px;align-items:flex-start}
+    .quote-point i{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.13);display:grid;place-items:center;font-style:normal;flex:0 0 auto}
+
+    .form-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--shadow)}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .field{display:flex;flex-direction:column;gap:7px}
+    .field.full{grid-column:1/-1}
+    .field label{font-size:13px;font-weight:850}
+    .field input,.field select,.field textarea{
+      border:1px solid var(--line);border-radius:13px;padding:12px 13px;outline:none;background:#fff
+    }
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(22,138,88,.08)}
+    .form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+    .result-card{
+      display:none;margin-top:18px;border:1px solid #bfe5cf;background:#effaf4;border-radius:18px;padding:18px
+    }
+    .result-card.show{display:block}
+    .result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
+    .result-box{background:#fff;border:1px solid #dcebe3;border-radius:14px;padding:13px}
+    .result-box strong{font-size:20px;display:block}
+
+    .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .case-card{padding:22px}
+    .case-card .case-icon{font-size:30px}
+    .case-card p{color:var(--muted);margin:10px 0 16px}
+    .case-meta{display:flex;justify-content:space-between;gap:10px;font-size:13px;font-weight:800;color:var(--brand)}
+
+    .impact-box{
+      background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--shadow)
+    }
+    .impact-controls{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end}
+    .impact-result{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+    .impact-card{padding:18px;background:var(--surface-2);border-radius:16px}
+    .impact-card strong{font-size:28px;display:block}
+
+    .faq{display:grid;gap:12px}
+    .faq-item{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+    .faq-q{width:100%;border:0;background:#fff;text-align:left;padding:18px 20px;font-weight:850;display:flex;justify-content:space-between;gap:12px}
+    .faq-a{display:none;padding:0 20px 18px;color:var(--muted)}
+    .faq-item.open .faq-a{display:block}
+    .faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
+
+    .cta{
+      background:linear-gradient(145deg,#153d2d,#0d5e3c);
+      color:#fff;border-radius:30px;padding:42px;
+      display:flex;justify-content:space-between;align-items:center;gap:30px
+    }
+    .cta p{color:#d1e3da;margin-top:12px;max-width:700px}
+
+    footer{padding:36px 0;border-top:1px solid var(--line);background:#fff}
+    .footer-grid{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+    .footer-links{display:flex;gap:18px;color:var(--muted);font-size:14px}
+
+    .modal{
+      position:fixed;inset:0;background:rgba(9,30,21,.52);display:none;align-items:center;justify-content:center;padding:20px;z-index:50
+    }
+    .modal.open{display:flex}
+    .modal-card{width:min(680px,100%);background:#fff;border-radius:24px;padding:24px;box-shadow:0 30px 90px rgba(0,0,0,.28)}
+    .modal-head{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:18px}
+    .icon-btn{width:38px;height:38px;border:0;border-radius:12px;background:#eef3f0;font-size:20px}
+    .toast{position:fixed;right:22px;bottom:22px;background:#123d2e;color:#fff;padding:14px 17px;border-radius:13px;box-shadow:0 18px 50px rgba(0,0,0,.22);opacity:0;transform:translateY(12px);transition:.25s;z-index:70}
+    .toast.show{opacity:1;transform:translateY(0)}
+
+    @media(max-width:1050px){
+      .hero-grid,.quote-wrap{grid-template-columns:1fr}
+      .hero-visual{min-height:500px}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .product-grid,.problem-grid,.case-grid{grid-template-columns:repeat(2,1fr)}
+      .sector-grid{grid-template-columns:repeat(3,1fr)}
+      .how{grid-template-columns:repeat(2,1fr)}
+      .how-step::after{display:none}
+      .quote-info{position:static}
+    }
+    @media(max-width:760px){
+      .section{padding:68px 0}
+      .nav-links{display:none;position:absolute;top:74px;left:16px;right:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;flex-direction:column;align-items:flex-start;box-shadow:var(--shadow)}
+      .nav-links.open{display:flex}
+      .menu-btn{display:inline-grid;place-items:center}
+      .hero{padding-top:56px}
+      .hero-grid{gap:30px}
+      .hero-visual{min-height:420px}
+      .hero-orbit{transform:scale(.83)}
+      .section-head{align-items:flex-start;flex-direction:column}
+      .stats,.features,.product-grid,.problem-grid,.case-grid,.how,.sector-grid,.impact-result,.result-grid{grid-template-columns:1fr}
+      .solution-band,.cta{grid-template-columns:1fr;display:grid}
+      .form-grid{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+      .impact-controls{grid-template-columns:1fr}
+      .orbit-item{width:132px}
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="#inicio" class="logo">
+      <span class="logo-mark">R</span>
+      <span>REVO Match Circular<small>Propuesta para la hackathon ambiental</small></span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#solucion">Solución</a>
+      <a href="#productos">Productos</a>
+      <a href="#sectores">Sectores</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#cotizar">Cotizar</a>
+      <a class="btn primary small" href="#cotizar">Encontrar una solución</a>
+    </nav>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Economía circular aplicada al mercado</span>
+        <h1>Productos reciclados de NFU que sí llegan al cliente correcto.</h1>
+        <p class="lead">
+          Conectamos caucho granulado y productos derivados de neumáticos fuera de uso con empresas que buscan soluciones técnicas, sostenibles y trazables.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#cotizar">Solicitar una propuesta</a>
+          <a class="btn secondary" href="#productos">Explorar productos</a>
+        </div>
+        <div class="trust-row">
+          <span><i>✓</i> Oferta validada</span>
+          <span><i>✓</i> Trazabilidad del material</span>
+          <span><i>✓</i> Distribución consolidada</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-orbit">
+          <div class="center-card">
+            <div>
+              <strong>NFU</strong>
+              <small>de residuo a solución comercial</small>
+            </div>
+          </div>
+          <div class="orbit-item o1"><div class="icon">🏭</div><b>Valorización</b><small>Material disponible</small></div>
+          <div class="orbit-item o2"><div class="icon">🔎</div><b>Matching</b><small>Cliente compatible</small></div>
+          <div class="orbit-item o3"><div class="icon">🚚</div><b>Distribución</b><small>Ruta sostenible</small></div>
+          <div class="orbit-item o4"><div class="icon">♻️</div><b>Impacto</b><small>Circularidad medible</small></div>
+          <div class="orbit-item o5"><div class="icon">🧩</div><b>Producto</b><small>Solución técnica</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container stats">
+      <div class="stat"><strong>6+</strong><span>familias de productos circulares</span></div>
+      <div class="stat"><strong>5</strong><span>sectores empresariales priorizados</span></div>
+      <div class="stat"><strong>B2B</strong><span>enfoque comercial directo</span></div>
+      <div class="stat"><strong>100%</strong><span>trazabilidad demostrable por lote</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="problema">
+    <div class="container">
+      <div class="section-head">
+        <div class="copy">
+          <span class="eyebrow">El desafío</span>
+          <h2>Reciclar no es suficiente si el producto no encuentra mercado.</h2>
+          <p class="lead">La dificultad está en la conexión entre la oferta valorizada y el cliente final.</p>
+        </div>
+      </div>
+
+      <div class="problem-grid">
+        <article class="problem-card">
+          <div class="num">01 · VISIBILIDAD</div>
+          <h3>El mercado no conoce la oferta</h3>
+          <p>Muchas empresas no saben qué productos pueden fabricarse con caucho reciclado ni dónde adquirirlos.</p>
+        </article>
+        <article class="problem-card">
+          <div class="num">02 · CONFIANZA</div>
+          <h3>Faltan fichas técnicas claras</h3>
+          <p>Sin especificaciones, aplicaciones y trazabilidad, el producto reciclado pierde competitividad.</p>
+        </article>
+        <article class="problem-card">
+          <div class="num">03 · DISTRIBUCIÓN</div>
+          <h3>La entrega puede volver inviable la venta</h3>
+          <p>Los pedidos dispersos y la distancia elevan el costo logístico y reducen el margen comercial.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="solucion">
+    <div class="container">
+      <div class="solution-band">
+        <div>
+          <span class="eyebrow">La solución</span>
+          <h2 style="margin-top:14px">REVO Match Circular</h2>
+          <p>Una plataforma comercial que muestra productos derivados de NFU, identifica compradores compatibles y organiza una entrega sostenible.</p>
+        </div>
+        <a class="btn primary" href="#cotizar">Publicar una necesidad</a>
+      </div>
+
+      <div class="features">
+        <article class="feature-card">
+          <div class="feature-icon">🛒</div>
+          <h3>Catálogo B2B</h3>
+          <p>Productos con aplicaciones, disponibilidad, ubicación y ficha técnica.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Matching comercial</h3>
+          <p>La necesidad del cliente se vincula con el producto más compatible.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">📦</div>
+          <h3>Pedidos consolidados</h3>
+          <p>Agrupamos entregas para reducir costos y viajes innecesarios.</p>
+        </article>
+        <article class="feature-card">
+          <div class="feature-icon">🔗</div>
+          <h3>Trazabilidad</h3>
+          <p>Cada lote puede mostrar origen, proceso de valorización y destino.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="productos">
+    <div class="container">
+      <div class="section-head">
+        <div class="copy">
+          <span class="eyebrow">Soluciones disponibles</span>
+          <h2>Productos que resuelven necesidades reales.</h2>
+          <p class="lead">Filtra por sector y descubre aplicaciones comerciales del caucho reciclado.</p>
+        </div>
+      </div>
+
+      <div class="filters" id="productFilters">
+        <button class="filter-btn active" data-filter="todos">Todos</button>
+        <button class="filter-btn" data-filter="automotriz">Automotriz</button>
+        <button class="filter-btn" data-filter="mineria">Minería</button>
+        <button class="filter-btn" data-filter="construccion">Construcción</button>
+        <button class="filter-btn" data-filter="municipal">Municipal</button>
+        <button class="filter-btn" data-filter="deportivo">Deportivo</button>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <article class="product-card" data-sector="automotriz construccion municipal">
+          <div class="product-art"><div class="product-shape">🅿️</div></div>
+          <div class="product-body">
+            <div class="tags"><span class="tag">Automotriz</span><span class="tag">Estacionamientos</span></div>
+            <h3>Topes de estacionamiento</h3>
+            <p>Solución resistente para concesionarios, estacionamientos, centros comerciales y almacenes.</p>
+            <div class="product-footer"><span class="match">Alta viabilidad comercial</span><button class="btn secondary small product-detail" data-product="Topes de estacionamiento">Ver ficha</button></div>
+          </div>
+        </article>
+
+        <article class="product-card" data-sector="mineria construccion">
+          <div class="product-art"><div class="product-shape">🔌</div></div>
+          <div class="product-body">
+            <div class="tags"><span class="tag">Minería</span><span class="tag">Industria</span></div>
+            <h3>Protectores para cables</h3>
+            <p>Protección de tendidos eléctricos y mangueras en zonas de tránsito de equipos móviles.</p>
+            <div class="product-footer"><span class="match">Producto de alto valor</span><button class="btn secondary small product-detail" data-product="Protectores para cables">Ver ficha</button></div>
+          </div>
+        </article>
+
+        <article class="product-card" data-sector="municipal deportivo construccion">
+          <div class="product-art"><div class="product-shape">🧱</div></div>
+          <div class="product-body">
+            <div class="tags"><span class="tag">Municipal</span><span class="tag">Deportivo</span></div>
+            <h3>Losetas amortiguantes</h3>
+            <p>Superficies para parques infantiles, gimnasios, patios escolares y áreas deportivas.</p>
+            <div class="product-footer"><span class="match">Aplicación visible y escalable</span><button class="btn secondary small product-detail" data-product="Losetas amortiguantes">Ver ficha</button></div>
+          </div>
+        </article>
+
+        <article class="product-card" data-sector="automotriz mineria">
+          <div class="product-art"><div class="product-shape">🚛</div></div>
+          <div class="product-body">
+            <div class="tags"><span class="tag">Minería</span><span class="tag">Transporte</span></div>
+            <h3>Cuñas para vehículos</h3>
+            <p>Elemento de seguridad para vehículos pesados, talleres y zonas de mantenimiento.</p>
+            <div class="product-footer"><span class="match">Requiere validación de carga</span><button class="btn secondary small product-detail" data-product="Cuñas para vehículos">Ver ficha</button></div>
+          </div>
+        </article>
+
+        <article class="product-card" data-sector="automotriz construccion deportivo">
+          <div class="product-art"><div class="product-shape">🏋️</div></div>
+          <div class="product-body">
+            <div class="tags"><span class="tag">Talleres</span><span class="tag">Gimnasios</span></div>
+            <h3>Pisos de caucho</h3>
+            <p>Superficie antideslizante y amortiguante para talleres, gimnasios y áreas técnicas.</p>
+            <div class="product-footer"><span class="match">Demanda recurrente</span><button class="btn secondary small product-detail" data-product="Pisos de caucho">Ver ficha</button></div>
+          </div>
+        </article>
+
+        <article class="product-card" data-sector="construccion municipal deportivo">
+          <div class="product-art"><div class="product-shape">⚫</div></div>
+          <div class="product-body">
+            <div class="tags"><span class="tag">Materia prima</span><span class="tag">Fabricantes</span></div>
+            <h3>Caucho granulado</h3>
+            <p>Materia prima para fabricantes de pisos, protectores, elementos urbanos y soluciones técnicas.</p>
+            <div class="product-footer"><span class="match">Venta por volumen</span><button class="btn secondary small product-detail" data-product="Caucho granulado">Ver ficha</button></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="sectores">
+    <div class="container">
+      <div class="section-head">
+        <div class="copy">
+          <span class="eyebrow">Mercados objetivo</span>
+          <h2>Una solución circular para cada sector.</h2>
+        </div>
+      </div>
+
+      <div class="sector-grid">
+        <article class="sector-card"><span>🚗</span><h3>Automotriz</h3><small>Talleres, concesionarios y estacionamientos.</small></article>
+        <article class="sector-card"><span>⛏️</span><h3>Minería</h3><small>Protección, seguridad y operación industrial.</small></article>
+        <article class="sector-card"><span>🏗️</span><h3>Construcción</h3><small>Pisos, aislamiento y elementos de protección.</small></article>
+        <article class="sector-card"><span>🏙️</span><h3>Municipal</h3><small>Parques, mobiliario y seguridad urbana.</small></article>
+        <article class="sector-card"><span>🏫</span><h3>Educación y deporte</h3><small>Superficies amortiguantes y antideslizantes.</small></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="como-funciona">
+    <div class="container">
+      <div class="section-head">
+        <div class="copy">
+          <span class="eyebrow">Proceso comercial</span>
+          <h2>De la necesidad a una propuesta concreta.</h2>
+        </div>
+      </div>
+
+      <div class="how">
+        <article class="how-step"><div class="step">1</div><h3>Publica tu necesidad</h3><p>Indica sector, producto, cantidad, ubicación y requisitos técnicos.</p></article>
+        <article class="how-step"><div class="step">2</div><h3>Encontramos coincidencias</h3><p>Comparamos la solicitud con productos, stock y proveedores disponibles.</p></article>
+        <article class="how-step"><div class="step">3</div><h3>Calculamos la entrega</h3><p>Estimamos distancia, consolidación, tiempo y costo de distribución.</p></article>
+        <article class="how-step"><div class="step">4</div><h3>Recibes una propuesta</h3><p>Obtienes una solución técnica, trazable y alineada con tu operación.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="cotizar">
+    <div class="container quote-wrap">
+      <aside class="quote-info">
+        <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Matching interactivo</span>
+        <h2 style="margin-top:16px">Cuéntanos qué necesitas.</h2>
+        <p>Completa el formulario y obtén una recomendación inmediata de producto, compatibilidad y modalidad logística.</p>
+        <div class="quote-points">
+          <div class="quote-point"><i>✓</i><span>Orientación por sector y aplicación.</span></div>
+          <div class="quote-point"><i>✓</i><span>Estimación de compatibilidad.</span></div>
+          <div class="quote-point"><i>✓</i><span>Recomendación de distribución consolidada.</span></div>
+          <div class="quote-point"><i>✓</i><span>Registro local del contacto para la demostración.</span></div>
+        </div>
+      </aside>
+
+      <div class="form-card">
+        <form id="quoteForm">
+          <div class="form-grid">
+            <div class="field"><label>Empresa</label><input name="empresa" required placeholder="Nombre de la empresa"></div>
+            <div class="field"><label>Sector</label>
+              <select name="sector" required>
+                <option value="">Seleccionar</option>
+                <option value="automotriz">Automotriz</option>
+                <option value="mineria">Minería</option>
+                <option value="construccion">Construcción</option>
+                <option value="municipal">Municipal</option>
+                <option value="deportivo">Educación / Deporte</option>
+              </select>
+            </div>
+            <div class="field"><label>Necesidad principal</label>
+              <select name="necesidad" required>
+                <option value="">Seleccionar</option>
+                <option value="seguridad">Seguridad y protección</option>
+                <option value="piso">Piso o superficie amortiguante</option>
+                <option value="estacionamiento">Estacionamiento</option>
+                <option value="materia">Materia prima reciclada</option>
+                <option value="cables">Protección de cables o mangueras</option>
+              </select>
+            </div>
+            <div class="field"><label>Cantidad aproximada</label><input name="cantidad" type="number" min="1" required placeholder="Ej. 500"></div>
+            <div class="field"><label>Ciudad de entrega</label>
+              <select name="ciudad" required>
+                <option value="">Seleccionar</option>
+                <option>Lima</option><option>Chiclayo</option><option>Huancayo</option><option>Arequipa</option><option>Otra ciudad</option>
+              </select>
+            </div>
+            <div class="field"><label>Correo de contacto</label><input name="correo" type="email" required placeholder="contacto@empresa.com"></div>
+            <div class="field full"><label>Especificaciones o contexto</label><textarea name="detalle" rows="4" placeholder="Describe dimensiones, carga, uso, exposición a combustibles, ubicación u otro requisito."></textarea></div>
+          </div>
+          <div class="form-actions">
+            <button type="reset" class="btn secondary">Limpiar</button>
+            <button class="btn primary">Encontrar solución</button>
+          </div>
+        </form>
+
+        <div class="result-card" id="quoteResult">
+          <h3 id="resultTitle">Coincidencia encontrada</h3>
+          <p class="muted" id="resultText"></p>
+          <div class="result-grid">
+            <div class="result-box"><span class="muted">Compatibilidad</span><strong id="resultMatch">0%</strong></div>
+            <div class="result-box"><span class="muted">Entrega estimada</span><strong id="resultDays">0 días</strong></div>
+            <div class="result-box"><span class="muted">Modalidad</span><strong id="resultMode">—</strong></div>
+            <div class="result-box"><span class="muted">Prioridad</span><strong id="resultPriority">—</strong></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn secondary" id="printProposal" type="button">Imprimir propuesta</button>
+            <button class="btn dark" id="saveLead" type="button">Guardar solicitud</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="casos">
+    <div class="container">
+      <div class="section-head">
+        <div class="copy">
+          <span class="eyebrow">Casos de uso</span>
+          <h2>Cómo una empresa puede aprovechar productos de NFU.</h2>
+        </div>
+      </div>
+
+      <div class="case-grid">
+        <article class="case-card"><div class="case-icon">⛏️</div><h3>Operación minera</h3><p>Solicita protectores de cable con resistencia a tránsito y abrasión para una zona de mantenimiento.</p><div class="case-meta"><span>Producto técnico</span><span>Alta prioridad</span></div></article>
+        <article class="case-card"><div class="case-icon">🅿️</div><h3>Red de concesionarios</h3><p>Consolida la compra de topes y protectores para varias sedes, reduciendo el costo por despacho.</p><div class="case-meta"><span>Compra recurrente</span><span>Escalable</span></div></article>
+        <article class="case-card"><div class="case-icon">🏫</div><h3>Municipalidad o colegio</h3><p>Implementa losetas amortiguantes en parques o patios con trazabilidad del material reciclado.</p><div class="case-meta"><span>Impacto visible</span><span>Valor social</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="impacto">
+    <div class="container">
+      <div class="section-head">
+        <div class="copy">
+          <span class="eyebrow">Impacto estimado</span>
+          <h2>Calcula el valor circular de tu compra.</h2>
+          <p class="lead">Simulación referencial para la presentación de la hackathon.</p>
+        </div>
+      </div>
+
+      <div class="impact-box">
+        <div class="impact-controls">
+          <div class="field">
+            <label>Toneladas de material reciclado que utilizarías</label>
+            <input id="impactTons" type="range" min="1" max="100" value="10">
+            <span class="muted"><strong id="impactTonsLabel">10</strong> toneladas</span>
+          </div>
+          <button class="btn primary" id="calcImpact">Calcular impacto</button>
+        </div>
+        <div class="impact-result">
+          <div class="impact-card"><span class="muted">NFU aprovechados</span><strong id="impactTires">500</strong><small>equivalencia referencial</small></div>
+          <div class="impact-card"><span class="muted">Material reinsertado</span><strong id="impactMaterial">10 t</strong><small>en nuevos usos productivos</small></div>
+          <div class="impact-card"><span class="muted">Despachos consolidados</span><strong id="impactTrips">2</strong><small>en lugar de viajes separados</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <div class="copy">
+          <span class="eyebrow">Preguntas frecuentes</span>
+          <h2>Lo esencial antes de comprar.</h2>
+        </div>
+      </div>
+
+      <div class="faq">
+        <div class="faq-item"><button class="faq-q">¿REVO fabrica directamente todos los productos?<span>+</span></button><div class="faq-a">La propuesta plantea que REVO articule plantas valorizadoras, fabricantes asociados, compradores y transportistas. La fabricación puede realizarse mediante aliados especializados.</div></div>
+        <div class="faq-item"><button class="faq-q">¿Los productos cuentan con especificaciones técnicas?<span>+</span></button><div class="faq-a">Cada producto debe incorporar ficha técnica, aplicación recomendada, dimensiones, controles de calidad y trazabilidad. Las aplicaciones de minería requieren validación adicional.</div></div>
+        <div class="faq-item"><button class="faq-q">¿Cómo se reduce el costo de distribución?<span>+</span></button><div class="faq-a">La plataforma agrupa pedidos por ciudad o corredor logístico y prioriza despachos consolidados o rutas de retorno.</div></div>
+        <div class="faq-item"><button class="faq-q">¿La cotización generada es definitiva?<span>+</span></button><div class="faq-a">No. En este prototipo es una simulación para la hackathon. Una operación real requiere validar stock, proveedor, pruebas técnicas, precio y transporte.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container cta">
+      <div>
+        <h2>Convierte una necesidad empresarial en una oportunidad circular.</h2>
+        <p>Encuentra productos derivados de NFU, solicita una propuesta y ayuda a cerrar el ciclo del reciclaje.</p>
+      </div>
+      <a class="btn primary" href="#cotizar">Solicitar propuesta</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div class="logo"><span class="logo-mark">R</span><span>REVO Match Circular<small>Prototipo comercial para hackathon</small></span></div>
+    <div class="footer-links"><a href="#productos">Productos</a><a href="#cotizar">Cotizar</a><a href="#faq">Preguntas</a></div>
+  </div>
+</footer>
+
+<div class="modal" id="productModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div><span class="eyebrow">Ficha de producto</span><h3 id="modalProductTitle" style="margin-top:12px">Producto</h3></div>
+      <button class="icon-btn" id="closeProductModal">×</button>
+    </div>
+    <div id="modalProductBody"></div>
+    <div class="form-actions">
+      <button class="btn secondary" id="closeProductModal2">Cerrar</button>
+      <a href="#cotizar" class="btn primary" id="modalQuoteBtn">Solicitar cotización</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const navLinks = document.getElementById("navLinks");
+  document.getElementById("menuBtn").addEventListener("click", () => navLinks.classList.toggle("open"));
+  navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
+
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const productCards = document.querySelectorAll(".product-card");
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const filter = btn.dataset.filter;
+      productCards.forEach(card => {
+        const show = filter === "todos" || card.dataset.sector.includes(filter);
+        card.style.display = show ? "flex" : "none";
+      });
+    });
+  });
+
+  const productData = {
+    "Topes de estacionamiento":{
+      use:"Concesionarios, estacionamientos, centros comerciales y almacenes.",
+      specs:["Caucho reciclado de alta densidad","Elementos reflectivos opcionales","Instalación mediante anclajes","Dimensiones ajustables según proveedor"],
+      validation:"Validación dimensional, resistencia al impacto y fijación."
+    },
+    "Protectores para cables":{
+      use:"Minería, industria y zonas de mantenimiento con tránsito de equipos.",
+      specs:["Canales para cables o mangueras","Superficie antideslizante","Módulos transportables","Diseño según carga esperada"],
+      validation:"Requiere ensayos de carga, abrasión y compatibilidad con el ambiente de operación."
+    },
+    "Losetas amortiguantes":{
+      use:"Parques infantiles, gimnasios, colegios, patios y zonas deportivas.",
+      specs:["Superficie amortiguante","Formato modular","Diferentes espesores","Aplicación interior o exterior según formulación"],
+      validation:"Validación de absorción de impacto, deslizamiento y durabilidad."
+    },
+    "Cuñas para vehículos":{
+      use:"Vehículos pesados, talleres, transporte y operaciones mineras.",
+      specs:["Diseño antideslizante","Asa o cuerda opcional","Tamaño según diámetro de rueda","Material de alta resistencia"],
+      validation:"Requiere prueba de carga y validación de uso seguro."
+    },
+    "Pisos de caucho":{
+      use:"Gimnasios, talleres, áreas técnicas y espacios de alta circulación.",
+      specs:["Formato loseta o rollo","Propiedades amortiguantes","Superficie antideslizante","Espesor según aplicación"],
+      validation:"Validación de desgaste, adherencia y comportamiento frente a aceites cuando corresponda."
+    },
+    "Caucho granulado":{
+      use:"Fabricantes de pisos, topes, protectores, mobiliario y soluciones técnicas.",
+      specs:["Granulometrías configurables","Contenido de acero y fibra controlado","Venta por kilogramo o tonelada","Trazabilidad por lote"],
+      validation:"Control de granulometría, humedad, limpieza y uniformidad."
+    }
+  };
+
+  const modal = document.getElementById("productModal");
+  const closeModal = () => modal.classList.remove("open");
+  document.getElementById("closeProductModal").onclick = closeModal;
+  document.getElementById("closeProductModal2").onclick = closeModal;
+  modal.addEventListener("click", e => { if(e.target === modal) closeModal(); });
+
+  document.querySelectorAll(".product-detail").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const name = btn.dataset.product;
+      const data = productData[name];
+      document.getElementById("modalProductTitle").textContent = name;
+      document.getElementById("modalProductBody").innerHTML = `
+        <p class="muted">${data.use}</p>
+        <h3 style="margin-top:20px">Características referenciales</h3>
+        <ul>${data.specs.map(x=>`<li>${x}</li>`).join("")}</ul>
+        <div class="alert" style="margin-top:18px;padding:14px;border-left:4px solid var(--accent);background:#fff7e8;border-radius:12px">
+          <strong>Validación recomendada:</strong><br>${data.validation}
+        </div>`;
+      modal.classList.add("open");
+    });
+  });
+  document.getElementById("modalQuoteBtn").addEventListener("click", closeModal);
+
+  const mapping = {
+    automotriz:{
+      seguridad:"Cuñas para vehículos",
+      piso:"Pisos de caucho",
+      estacionamiento:"Topes de estacionamiento",
+      materia:"Caucho granulado",
+      cables:"Protectores para cables"
+    },
+    mineria:{
+      seguridad:"Cuñas para vehículos",
+      piso:"Pisos de caucho",
+      estacionamiento:"Topes de estacionamiento",
+      materia:"Caucho granulado",
+      cables:"Protectores para cables"
+    },
+    construccion:{
+      seguridad:"Topes de estacionamiento",
+      piso:"Losetas amortiguantes",
+      estacionamiento:"Topes de estacionamiento",
+      materia:"Caucho granulado",
+      cables:"Protectores para cables"
+    },
+    municipal:{
+      seguridad:"Topes de estacionamiento",
+      piso:"Losetas amortiguantes",
+      estacionamiento:"Topes de estacionamiento",
+      materia:"Caucho granulado",
+      cables:"Protectores para cables"
+    },
+    deportivo:{
+      seguridad:"Pisos de caucho",
+      piso:"Losetas amortiguantes",
+      estacionamiento:"Topes de estacionamiento",
+      materia:"Caucho granulado",
+      cables:"Protectores para cables"
+    }
+  };
+
+  let currentLead = null;
+  const quoteForm = document.getElementById("quoteForm");
+  quoteForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(quoteForm).entries());
+    const product = mapping[data.sector][data.necesidad];
+    const qty = Number(data.cantidad);
+    let match = 78;
+    if(data.sector === "mineria" && data.necesidad === "cables") match = 92;
+    if(data.necesidad === "piso") match = 88;
+    if(data.necesidad === "materia") match = 95;
+    if(qty > 1000) match -= 4;
+
+    const cityFactor = data.ciudad === "Lima" ? 0 : 3;
+    const days = Math.max(7, 10 + cityFactor + Math.ceil(qty/700));
+    const mode = data.ciudad === "Lima" ? "Entrega directa" : "Carga consolidada";
+    const priority = match >= 90 ? "Alta" : match >= 80 ? "Media-alta" : "Media";
+
+    currentLead = {...data, product, match, days, mode, priority, createdAt:new Date().toISOString()};
+    document.getElementById("resultTitle").textContent = `Solución recomendada: ${product}`;
+    document.getElementById("resultText").textContent = `La solicitud de ${data.empresa} presenta una buena coincidencia con ${product}. La propuesta final deberá validar especificaciones, stock y transporte.`;
+    document.getElementById("resultMatch").textContent = match + "%";
+    document.getElementById("resultDays").textContent = days + " días";
+    document.getElementById("resultMode").textContent = mode;
+    document.getElementById("resultPriority").textContent = priority;
+    document.getElementById("quoteResult").classList.add("show");
+    document.getElementById("quoteResult").scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
+
+  document.getElementById("saveLead").addEventListener("click", () => {
+    if(!currentLead) return;
+    const leads = JSON.parse(localStorage.getItem("revo_leads") || "[]");
+    leads.push(currentLead);
+    localStorage.setItem("revo_leads", JSON.stringify(leads));
+    showToast("Solicitud guardada localmente para la demostración.");
+  });
+
+  document.getElementById("printProposal").addEventListener("click", () => window.print());
+
+  const impactRange = document.getElementById("impactTons");
+  const updateImpact = () => {
+    const tons = Number(impactRange.value);
+    document.getElementById("impactTonsLabel").textContent = tons;
+    document.getElementById("impactTires").textContent = Math.round(tons * 50).toLocaleString("es-PE");
+    document.getElementById("impactMaterial").textContent = tons + " t";
+    document.getElementById("impactTrips").textContent = Math.max(1,Math.ceil(tons / 6));
+  };
+  impactRange.addEventListener("input", updateImpact);
+  document.getElementById("calcImpact").addEventListener("click", () => {
+    updateImpact();
+    showToast("Impacto referencial actualizado.");
+  });
+  updateImpact();
+
+  document.querySelectorAll(".faq-q").forEach(btn => {
+    btn.addEventListener("click", () => btn.parentElement.classList.toggle("open"));
+  });
+
+  function showToast(message){
+    const toast = document.getElementById("toast");
+    toast.textContent = message;
+    toast.classList.add("show");
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+  }
+</script>
+</body>
+</html>
