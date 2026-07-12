@@ -1,0 +1,26 @@
+REVO MATCH CIRCULAR — PÁGINA WEB COMERCIAL
+
+Objetivo:
+Atraer empresas interesadas en productos derivados de neumáticos fuera de uso,
+mostrar aplicaciones comerciales y capturar solicitudes de cotización.
+
+Características:
+- Landing page comercial responsive.
+- Catálogo filtrable por sector.
+- Fichas de producto.
+- Formulario interactivo de matching.
+- Simulación de propuesta comercial.
+- Calculadora de impacto.
+- Captura de prospectos en localStorage.
+- Preguntas frecuentes.
+- No requiere conexión a internet.
+
+Uso:
+1. Abra index.html con Chrome, Edge o Firefox.
+2. Navegue por la página.
+3. Pruebe el formulario "Cuéntanos qué necesitas".
+4. Las solicitudes guardadas quedan en el almacenamiento local del navegador.
+
+Nota:
+Este archivo es un prototipo frontend. Para recibir correos, guardar prospectos
+en una base de datos compartida o procesar pagos, se requiere un backend.
