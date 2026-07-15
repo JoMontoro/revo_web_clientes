@@ -233,8 +233,29 @@
     .tags{display:flex;gap:7px;flex-wrap:wrap}
     .tag{font-size:11px;font-weight:850;background:var(--brand-soft);color:var(--brand-dark);padding:6px 8px;border-radius:999px}
     .product-body p{color:var(--muted);font-size:14px}
-    .product-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto}
-    .match{font-size:13px;font-weight:850;color:var(--brand)}
+    .product-footer{display:grid;grid-template-columns:1fr auto;align-items:end;gap:10px;margin-top:auto}
+    .product-benefit{font-size:13px;font-weight:700;color:var(--brand-dark);margin-top:8px;line-height:1.4;}
+    .product-footer .match{font-size:13px;font-weight:850;color:var(--brand)}
+
+    .product-card:hover{transform:translateY(-2px);box-shadow:0 22px 52px rgba(19,73,49,.12)}
+    .product-card{transition:.25s}
+
+    .product-detail{min-width:120px}
+
+    .modal-body-grid{display:grid;gap:20px}
+    .product-modal-top{display:grid;grid-template-columns:72px 1fr;gap:18px;align-items:center;padding:18px;border-radius:22px;background:rgba(22,138,88,.07);border:1px solid rgba(22,138,88,.14)}
+    .product-modal-icon{width:72px;height:72px;border-radius:20px;background:var(--brand-soft);display:grid;place-items:center;font-size:32px}
+    .product-modal-tagline{margin:0;font-size:16px;font-weight:800;color:var(--brand-dark);line-height:1.3}
+    .product-modal-ideal{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.6}
+    .product-modal-benefit{padding:18px;border-radius:22px;background:#e7f6ef;color:#0f4f35;line-height:1.7;box-shadow:inset 0 0 0 1px rgba(22,138,88,.12)}
+    .product-modal-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .product-modal-card{padding:16px;background:#fff;border:1px solid #dbe7e0;border-radius:18px;box-shadow:0 14px 36px rgba(19,73,49,.06)}
+    .product-modal-card h4{font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin:0 0 10px;color:var(--brand)}
+    .product-modal-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
+    .product-specs{display:grid;gap:8px;margin-top:12px;padding-left:18px;list-style:none}
+    .product-specs li{position:relative;padding-left:16px;color:var(--muted);line-height:1.6}
+    .product-specs li::before{content:"•";position:absolute;left:0;top:0;color:var(--brand)}
+    .product-modal-note{margin-top:18px;padding:16px;border-radius:18px;background:linear-gradient(135deg,#f5fbf7,#eef7f0);border:1px solid #d9e9dc;color:var(--brand-dark);font-size:14px;line-height:1.7}
 
     .sector-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
     .sector-card{padding:20px;text-align:center}
@@ -322,6 +343,20 @@
     .toast{position:fixed;right:22px;bottom:22px;background:#123d2e;color:#fff;padding:14px 17px;border-radius:13px;box-shadow:0 18px 50px rgba(0,0,0,.22);opacity:0;transform:translateY(12px);transition:.25s;z-index:70}
     .toast.show{opacity:1;transform:translateY(0)}
 
+    .proposal-print{display:none;margin-top:20px;border-top:1px solid #dde8e2;padding-top:18px}
+    .proposal-print .print-row{display:grid;grid-template-columns:minmax(140px,1fr) 2fr;gap:10px;margin-bottom:10px;font-size:14px}
+    .proposal-print .print-row strong{color:#1f4d38}
+
+    @media print {
+      body * { visibility:hidden !important; }
+      #quoteResult, #quoteResult * { visibility:visible !important; }
+      #quoteResult { position:absolute; top:0; left:0; width:100%; padding:0 18px 18px; }
+      #quoteResult .form-actions, #quoteResult .btn { display:none !important; }
+      .proposal-print { display:block !important; }
+      .no-print { display:none !important; }
+      .print-row { page-break-inside: avoid; }
+    }
+
     @media(max-width:1050px){
       .hero-grid,.quote-wrap{grid-template-columns:1fr}
       .hero-visual{min-height:500px}
@@ -358,7 +393,7 @@
   <div class="container nav">
     <a href="#inicio" class="logo">
       <span class="logo-mark">R</span>
-      <span>REVO Match Circular<small>Plataforma comercial de economía circular</small></span>
+      <span>REVO Match Circular<small>Del neumático valorizado al cliente correcto</small></span>
     </a>
 
     <nav class="nav-links" id="navLinks">
@@ -423,27 +458,27 @@
     <div class="container">
       <div class="section-head">
         <div class="copy">
-          <span class="eyebrow">La brecha comercial</span>
-          <h2>Reciclar no es suficiente si el producto no encuentra mercado.</h2>
-          <p class="lead">La dificultad está en la conexión entre la oferta valorizada y el cliente final.</p>
+          <span class="eyebrow">como nace Revo</span>
+          <h2>Una propuesta diseñada para visibilizar productos circulares y conectar oferta con demanda.</h2>
+          <p class="lead">Esta página nace para demostrar cómo el caucho reciclado puede convertirse en soluciones comerciales claras, trazables y útiles para empresas.</p>
         </div>
       </div>
 
       <div class="problem-grid">
         <article class="problem-card">
-          <div class="num">01 · VISIBILIDAD</div>
-          <h3>El mercado no conoce la oferta</h3>
-          <p>Muchas empresas no saben qué productos pueden fabricarse con caucho reciclado ni dónde adquirirlos.</p>
+          <div class="num">01 · PROPÓSITO</div>
+          <h3>Buscamos demostrar que los productos derivados derivados de Neumáticos</h3>
+          <p>Queremos explicar por qué los productos derivados de neumáticos fuera de uso son una alternativa viable y sostenible para el mercado. NFU</p>
         </article>
         <article class="problem-card">
-          <div class="num">02 · CONFIANZA</div>
-          <h3>Faltan fichas técnicas claras</h3>
-          <p>Sin especificaciones, aplicaciones y trazabilidad, el producto reciclado pierde competitividad.</p>
+          <div class="num">02 · MOTIVO</div>
+          <h3>Apostamos por esta propuesta comercial que facilita la reconversión</h3>
+          <p>La página fue creada para apoyar una propuesta comercial que facilite la reconversión de residuo en insumo para empresas.</p>
         </article>
         <article class="problem-card">
-          <div class="num">03 · DISTRIBUCIÓN</div>
-          <h3>La entrega puede volver inviable la venta</h3>
-          <p>Los pedidos dispersos y la distancia elevan el costo logístico y reducen el margen comercial.</p>
+          <div class="num">03 · VISIÓN</div>
+          <h3>Vincular oferta y demanda</h3>
+          <p>El objetivo es conectar necesidades reales del cliente con productos reciclados, dejando atrás la idea de que reciclar basta por sí solo.</p>
         </article>
       </div>
     </div>
@@ -511,6 +546,7 @@
             <div class="tags"><span class="tag">Automotriz</span><span class="tag">Estacionamientos</span></div>
             <h3>Topes de estacionamiento</h3>
             <p>Solución resistente para concesionarios, estacionamientos, centros comerciales y almacenes.</p>
+            <p class="product-benefit">Beneficio: protege pavimentos y mejora la seguridad del flujo vehicular con una instalación rápida y duradera.</p>
             <div class="product-footer"><span class="match">Alta viabilidad comercial</span><button class="btn secondary small product-detail" data-product="Topes de estacionamiento">Ver ficha</button></div>
           </div>
         </article>
@@ -521,6 +557,7 @@
             <div class="tags"><span class="tag">Minería</span><span class="tag">Industria</span></div>
             <h3>Protectores para cables</h3>
             <p>Protección de tendidos eléctricos y mangueras en zonas de tránsito de equipos móviles.</p>
+            <p class="product-benefit">Beneficio: reduce riesgos de corte y abrasión, alargando la vida útil de instalaciones críticas en ambientes agresivos.</p>
             <div class="product-footer"><span class="match">Producto de alto valor</span><button class="btn secondary small product-detail" data-product="Protectores para cables">Ver ficha</button></div>
           </div>
         </article>
@@ -531,6 +568,7 @@
             <div class="tags"><span class="tag">Municipal</span><span class="tag">Deportivo</span></div>
             <h3>Losetas amortiguantes</h3>
             <p>Superficies para parques infantiles, gimnasios, patios escolares y áreas deportivas.</p>
+            <p class="product-benefit">Beneficio: reduce impactos y lesiones mientras ofrece una alternativa estética y durable para espacios públicos y deportivos.</p>
             <div class="product-footer"><span class="match">Aplicación visible y escalable</span><button class="btn secondary small product-detail" data-product="Losetas amortiguantes">Ver ficha</button></div>
           </div>
         </article>
@@ -541,6 +579,7 @@
             <div class="tags"><span class="tag">Minería</span><span class="tag">Transporte</span></div>
             <h3>Cuñas para vehículos</h3>
             <p>Elemento de seguridad para vehículos pesados, talleres y zonas de mantenimiento.</p>
+            <p class="product-benefit">Beneficio: evita desplazamientos no deseados y aporta una solución económica para operaciones de carga y estacionamiento.</p>
             <div class="product-footer"><span class="match">Requiere validación de carga</span><button class="btn secondary small product-detail" data-product="Cuñas para vehículos">Ver ficha</button></div>
           </div>
         </article>
@@ -551,6 +590,7 @@
             <div class="tags"><span class="tag">Talleres</span><span class="tag">Gimnasios</span></div>
             <h3>Pisos de caucho</h3>
             <p>Superficie antideslizante y amortiguante para talleres, gimnasios y áreas técnicas.</p>
+            <p class="product-benefit">Beneficio: aporta mayor confort, reduce el ruido y protege al personal frente a impactos de equipos y herramientas.</p>
             <div class="product-footer"><span class="match">Demanda recurrente</span><button class="btn secondary small product-detail" data-product="Pisos de caucho">Ver ficha</button></div>
           </div>
         </article>
@@ -561,6 +601,7 @@
             <div class="tags"><span class="tag">Materia prima</span><span class="tag">Fabricantes</span></div>
             <h3>Caucho granulado</h3>
             <p>Materia prima para fabricantes de pisos, protectores, elementos urbanos y soluciones técnicas.</p>
+            <p class="product-benefit">Beneficio: ofrece una alternativa reciclada flexible para producción en masa, apoyando la trazabilidad y el uso responsable del residuo.</p>
             <div class="product-footer"><span class="match">Venta por volumen</span><button class="btn secondary small product-detail" data-product="Caucho granulado">Ver ficha</button></div>
           </div>
         </article>
@@ -591,7 +632,6 @@
     <div class="container">
       <div class="section-head">
         <div class="copy">
-          <span class="eyebrow">Proceso comercial</span>
           <h2>De la necesidad a una propuesta concreta.</h2>
         </div>
       </div>
@@ -608,7 +648,6 @@
   <section class="section alt" id="cotizar">
     <div class="container quote-wrap">
       <aside class="quote-info">
-        <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Matching interactivo</span>
         <h2 style="margin-top:16px">Cuéntanos qué necesitas.</h2>
         <p>Completa el formulario y obtén una recomendación inmediata de producto, compatibilidad y modalidad logística.</p>
         <div class="quote-points">
@@ -668,6 +707,17 @@
             <div class="result-box"><span class="muted">Modalidad</span><strong id="resultMode">—</strong></div>
             <div class="result-box"><span class="muted">Prioridad</span><strong id="resultPriority">—</strong></div>
           </div>
+          <div class="proposal-print" id="proposalPrint">
+            <h4>Datos de la propuesta</h4>
+            <div class="print-row"><strong>Empresa:</strong><span id="printEmpresa"></span></div>
+            <div class="print-row"><strong>Sector:</strong><span id="printSector"></span></div>
+            <div class="print-row"><strong>Necesidad principal:</strong><span id="printNecesidad"></span></div>
+            <div class="print-row"><strong>Cantidad aproximada:</strong><span id="printCantidad"></span></div>
+            <div class="print-row"><strong>Ciudad de entrega:</strong><span id="printCiudad"></span></div>
+            <div class="print-row"><strong>Detalle:</strong><span id="printDetalle"></span></div>
+            <div class="print-row"><strong>Producto recomendado:</strong><span id="printProducto"></span></div>
+            <div class="print-row"><strong>Fecha de propuesta:</strong><span id="printCreatedAt"></span></div>
+          </div>
           <div class="form-actions">
             <button class="btn secondary" id="printProposal" type="button">Imprimir propuesta</button>
             <button class="btn dark" id="saveLead" type="button">Guardar solicitud</button>
@@ -700,7 +750,7 @@
         <div class="copy">
           <span class="eyebrow">Impacto estimado</span>
           <h2>Calcula el valor circular de tu compra.</h2>
-          <p class="lead">Estimación referencial basada en el volumen de material reciclado utilizado.</p>
+          <p class="lead">Simulación referencial para la presentación de la hackathon.</p>
         </div>
       </div>
 
@@ -732,10 +782,10 @@
       </div>
 
       <div class="faq">
-        <div class="faq-item"><button class="faq-q">¿REVO fabrica directamente todos los productos?<span>+</span></button><div class="faq-a">REVO articula plantas valorizadoras, fabricantes asociados, compradores y transportistas. La fabricación puede realizarse mediante aliados especializados.</div></div>
+        <div class="faq-item"><button class="faq-q">¿REVO fabrica directamente todos los productos?<span>+</span></button><div class="faq-a">La propuesta plantea que REVO articule plantas valorizadoras, fabricantes asociados, compradores y transportistas. La fabricación puede realizarse mediante aliados especializados.</div></div>
         <div class="faq-item"><button class="faq-q">¿Los productos cuentan con especificaciones técnicas?<span>+</span></button><div class="faq-a">Cada producto debe incorporar ficha técnica, aplicación recomendada, dimensiones, controles de calidad y trazabilidad. Las aplicaciones de minería requieren validación adicional.</div></div>
         <div class="faq-item"><button class="faq-q">¿Cómo se reduce el costo de distribución?<span>+</span></button><div class="faq-a">La plataforma agrupa pedidos por ciudad o corredor logístico y prioriza despachos consolidados o rutas de retorno.</div></div>
-        <div class="faq-item"><button class="faq-q">¿La cotización generada es definitiva?<span>+</span></button><div class="faq-a">No. La cotización mostrada es una estimación inicial. Una operación real requiere validar stock, proveedor, pruebas técnicas, precio y transporte.</div></div>
+        <div class="faq-item"><button class="faq-q">¿La cotización generada es definitiva?<span>+</span></button><div class="faq-a">No. En este prototipo es una simulación para la hackathon. Una operación real requiere validar stock, proveedor, pruebas técnicas, precio y transporte.</div></div>
       </div>
     </div>
   </section>
@@ -753,7 +803,7 @@
 
 <footer>
   <div class="container footer-grid">
-    <div class="logo"><span class="logo-mark">R</span><span>REVO Match Circular<small>Plataforma B2B para productos derivados de NFU</small></span></div>
+    <div class="logo"><span class="logo-mark">R</span><span>REVO Match Circular<small>Prototipo comercial para hackathon</small></span></div>
     <div class="footer-links"><a href="#productos">Productos</a><a href="#cotizar">Cotizar</a><a href="#faq">Preguntas</a></div>
   </div>
 </footer>
@@ -795,32 +845,61 @@
 
   const productData = {
     "Topes de estacionamiento":{
+      icon:"🅿️",
+      tagline:"Bloqueo inteligente para flujos vehiculares seguros.",
       use:"Concesionarios, estacionamientos, centros comerciales y almacenes.",
+      ideal:"Ideal para zonas de alto tránsito que necesitan control de estacionamiento y protección de bordes.",
+      advantage:"Organiza el espacio, protege el pavimento y reduce el riesgo de golpes contra muros.",
       specs:["Caucho reciclado de alta densidad","Elementos reflectivos opcionales","Instalación mediante anclajes","Dimensiones ajustables según proveedor"],
       validation:"Validación dimensional, resistencia al impacto y fijación."
     },
     "Protectores para cables":{
+      icon:"🔌",
+      tagline:"Cobertura resistente para tendidos eléctricos y mangueras.",
       use:"Minería, industria y zonas de mantenimiento con tránsito de equipos.",
+      ideal:"Ideal para instalaciones que requieren seguridad adicional en áreas con maquinaria móvil.",
+      advantage:"Minimiza cortes, abrasión y fallas en cables, manteniendo la operación más estable.",
+      benefit:"Reduce el desgaste y protege conexiones críticas contra cortes, abrasión y agresión mecánica.",
       specs:["Canales para cables o mangueras","Superficie antideslizante","Módulos transportables","Diseño según carga esperada"],
       validation:"Requiere ensayos de carga, abrasión y compatibilidad con el ambiente de operación."
     },
     "Losetas amortiguantes":{
+      icon:"🧱",
+      tagline:"Superficies seguras que reducen el impacto y mejoran el confort.",
       use:"Parques infantiles, gimnasios, colegios, patios y zonas deportivas.",
+      ideal:"Perfecta para espacios con niños, entrenamientos y áreas de alto tráfico peatonal.",
+      advantage:"Absorbe golpes, protege a los usuarios y aporta un acabado moderno y cálido.",
+      benefit:"Mejora la seguridad y el confort, minimizando golpes en superficies de alto tránsito.",
       specs:["Superficie amortiguante","Formato modular","Diferentes espesores","Aplicación interior o exterior según formulación"],
       validation:"Validación de absorción de impacto, deslizamiento y durabilidad."
     },
     "Cuñas para vehículos":{
+      icon:"🚛",
+      tagline:"Seguridad simple para estacionamientos y zonas de carga.",
       use:"Vehículos pesados, talleres, transporte y operaciones mineras.",
+      ideal:"Útil en rampas, estaciones de carga y parqueos de flotas pesadas.",
+      advantage:"Mantiene los vehículos inmóviles y protege al personal frente a movimientos no deseados.",
+      benefit:"Ayuda a asegurar vehículos inmóviles y reduce los riesgos de desplazamientos en zonas de trabajo.",
       specs:["Diseño antideslizante","Asa o cuerda opcional","Tamaño según diámetro de rueda","Material de alta resistencia"],
       validation:"Requiere prueba de carga y validación de uso seguro."
     },
     "Pisos de caucho":{
+      icon:"🏋️",
+      tagline:"Cobertura técnica para áreas de trabajo con alto desgaste.",
       use:"Gimnasios, talleres, áreas técnicas y espacios de alta circulación.",
+      ideal:"Especial para espacios que necesitan mayor ergonomía y protección de superficies.",
+      advantage:"Reduce el ruido, mejora el confort y protege el suelo ante impacto y derrames.",
+      benefit:"Reduce la fatiga del personal, protege superficies y brinda seguridad antideslizante en sectores productivos.",
       specs:["Formato loseta o rollo","Propiedades amortiguantes","Superficie antideslizante","Espesor según aplicación"],
       validation:"Validación de desgaste, adherencia y comportamiento frente a aceites cuando corresponda."
     },
     "Caucho granulado":{
+      icon:"⚫",
+      tagline:"Materia prima circular para soluciones técnicas a medida.",
       use:"Fabricantes de pisos, topes, protectores, mobiliario y soluciones técnicas.",
+      ideal:"Pensado para empresas que integran materiales reciclados en sus productos.",
+      advantage:"Permite producir con trazabilidad y control, sin perder versatilidad de uso.",
+      benefit:"Permite a los fabricantes incorporar material reciclado en grandes volúmenes sin perder flexibilidad de diseño.",
       specs:["Granulometrías configurables","Contenido de acero y fibra controlado","Venta por kilogramo o tonelada","Trazabilidad por lote"],
       validation:"Control de granulometría, humedad, limpieza y uniformidad."
     }
@@ -838,11 +917,43 @@
       const data = productData[name];
       document.getElementById("modalProductTitle").textContent = name;
       document.getElementById("modalProductBody").innerHTML = `
-        <p class="muted">${data.use}</p>
-        <h3 style="margin-top:20px">Características referenciales</h3>
-        <ul>${data.specs.map(x=>`<li>${x}</li>`).join("")}</ul>
-        <div class="alert" style="margin-top:18px;padding:14px;border-left:4px solid var(--accent);background:#fff7e8;border-radius:12px">
-          <strong>Validación recomendada:</strong><br>${data.validation}
+        <div class="modal-body-grid">
+          <div class="product-modal-top">
+            <div class="product-modal-icon">${data.icon || "📦"}</div>
+            <div>
+              <p class="product-modal-tagline">${data.tagline || "Solución circular con valor técnico."}</p>
+              <p class="product-modal-ideal">${data.ideal || data.use}</p>
+            </div>
+          </div>
+
+          <div class="product-modal-benefit">
+            <strong>Beneficio clave</strong>
+            <p>${data.benefit || "Apoya la implementación de soluciones circulares con mayor trazabilidad."}</p>
+          </div>
+
+          <div class="product-modal-cards">
+            <div class="product-modal-card">
+              <h4>Orientado a</h4>
+              <p>${data.use}</p>
+            </div>
+            <div class="product-modal-card">
+              <h4>Valor agregado</h4>
+              <p>${data.advantage || "Mejora la seguridad y reduce costos operativos."}</p>
+            </div>
+            <div class="product-modal-card">
+              <h4>Uso recomendado</h4>
+              <p>${data.tagline}</p>
+            </div>
+          </div>
+
+          <div>
+            <h3>Características referenciales</h3>
+            <ul class="product-specs">${data.specs.map(x=>`<li>${x}</li>`).join("")}</ul>
+          </div>
+
+          <div class="product-modal-note">
+            <strong>Validación sugerida:</strong><br>${data.validation}
+          </div>
         </div>`;
       modal.classList.add("open");
     });
@@ -912,6 +1023,7 @@
     document.getElementById("resultDays").textContent = days + " días";
     document.getElementById("resultMode").textContent = mode;
     document.getElementById("resultPriority").textContent = priority;
+    populatePrintProposal(currentLead);
     document.getElementById("quoteResult").classList.add("show");
     document.getElementById("quoteResult").scrollIntoView({behavior:"smooth",block:"nearest"});
   });
@@ -924,7 +1036,25 @@
     showToast("Solicitud guardada localmente para la demostración.");
   });
 
-  document.getElementById("printProposal").addEventListener("click", () => window.print());
+  document.getElementById("printProposal").addEventListener("click", () => {
+    if(!currentLead){
+      showToast("Completa el formulario antes de imprimir la propuesta.");
+      return;
+    }
+    populatePrintProposal(currentLead);
+    window.print();
+  });
+
+  function populatePrintProposal(data){
+    document.getElementById("printEmpresa").textContent = data.empresa;
+    document.getElementById("printSector").textContent = data.sector;
+    document.getElementById("printNecesidad").textContent = data.necesidad;
+    document.getElementById("printCantidad").textContent = data.cantidad;
+    document.getElementById("printCiudad").textContent = data.ciudad;
+    document.getElementById("printDetalle").textContent = data.detalle || "No se especificó detalle adicional.";
+    document.getElementById("printProducto").textContent = data.product;
+    document.getElementById("printCreatedAt").textContent = new Date(data.createdAt).toLocaleString("es-PE");
+  }
 
   const impactRange = document.getElementById("impactTons");
   const updateImpact = () => {
