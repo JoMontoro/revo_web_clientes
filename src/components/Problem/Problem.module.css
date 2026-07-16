@@ -1,0 +1,8 @@
+.section { position: relative; }
+.section > .container { position: relative; z-index: 1; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.num { font-size: 13px; font-weight: 900; color: var(--brand); margin-bottom: 18px; }
+.problem-card p { color: var(--muted); margin-top: 10px; }
+
+@media (max-width: 1050px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
