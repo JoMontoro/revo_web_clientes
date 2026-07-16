@@ -1,0 +1,42 @@
+.band {
+  background: #123d2e;
+  color: #fff;
+  border-radius: 28px;
+  padding: 34px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 26px;
+  align-items: center;
+}
+
+.band p { color: #cfe2d8; margin-top: 10px; max-width: 760px; }
+
+.bandInner {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  gap: 24px;
+  align-items: center;
+  width: 100%;
+}
+
+.features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 34px; }
+
+.featureIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  background: var(--brand-soft);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.featureIcon i { font-size: 24px; color: var(--brand); }
+.feature-card p { color: var(--muted); margin-top: 8px; font-size: 14px; }
+
+@media (max-width: 1050px) { .features { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) {
+  .band { grid-template-columns: 1fr; display: grid; }
+  .features { grid-template-columns: 1fr; }
+}

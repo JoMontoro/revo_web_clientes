@@ -1,0 +1,17 @@
+.resultCard {
+  display: block !important;
+  margin-top: 18px;
+  border: 1px solid #bfe5cf;
+  background: #effaf4;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+@media print {
+  body * { visibility: hidden !important; display: none !important; }
+  #proposalTemplate, #proposalTemplate * { visibility: visible !important; display: block !important; }
+  #proposalTemplate { position: absolute; top: 0; left: 0; width: 100%; background: #fff; }
+  #proposalTemplate table { display: table !important; }
+  #proposalTemplate table tr { display: table-row !important; }
+  #proposalTemplate table td { display: table-cell !important; }
+}
