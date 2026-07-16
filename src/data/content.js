@@ -1,21 +1,21 @@
 export const sectors = [
   { icon: 'bi-car-front', nameKey: 'sectores.card1', descKey: 'sectores.card1d', image: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=300&q=80' },
-  { icon: 'bi-pick', nameKey: 'sectores.card2', descKey: 'sectores.card2d', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=300&q=80' },
+  { icon: 'bi-minecart-loaded', nameKey: 'sectores.card2', descKey: 'sectores.card2d', image: 'https://revistaseguridadminera.com/wp-content/uploads/2026/03/Economia-circular-en-EPP-gestion-del-ciclo-de-vida-y-sostenibilidad-ambiental-en-mineria-.jpg' },
   { icon: 'bi-building', nameKey: 'sectores.card3', descKey: 'sectores.card3d', image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=300&q=80' },
   { icon: 'bi-buildings', nameKey: 'sectores.card4', descKey: 'sectores.card4d', image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=300&q=80' },
   { icon: 'bi-mortarboard', nameKey: 'sectores.card5', descKey: 'sectores.card5d', image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=300&q=80' },
 ];
 
 export const howSteps = [
-  { image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=400&q=80', titleKey: 'como.step1', descKey: 'como.step1d' },
-  { image: 'https://images.unsplash.com/photo-1581092335871-4bf1c4c3c5c6?w=400&q=80', titleKey: 'como.step2', descKey: 'como.step2d' },
-  { image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=400&q=80', titleKey: 'como.step3', descKey: 'como.step3d' },
-  { image: 'https://images.unsplash.com/photo-1590674899484-d5640d0f7b3a?w=400&q=80', titleKey: 'como.step4', descKey: 'como.step4d' },
+  { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLN3gGVXxVRD6hTk0oCLSbD3ExQd5jTxMqczx48MXTCjmPVvs5iLO6jac&s=10', titleKey: 'como.step1', descKey: 'como.step1d' },
+  { image: 'https://img.icons8.com/color/1200/puzzle-matching.jpg', titleKey: 'como.step2', descKey: 'como.step2d' },
+  { image: 'https://cdn.vectorstock.com/i/1000v/31/19/green-delivery-icon-logistics-transport-vector-22483119.jpg', titleKey: 'como.step3', descKey: 'como.step3d' },
+  { image: 'https://thumbs.dreamstime.com/b/contract-agreement-paper-handshake-contract-agreement-paper-blank-seal-pen-handshake-businessmen-shake-hands-122674503.jpg', titleKey: 'como.step4', descKey: 'como.step4d' },
 ];
 
 export const useCases = [
   {
-    icon: 'bi-pick',
+    icon: 'bi-minecart-loaded',
     image: 'https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=600&q=80',
     titleKey: 'casos.card1.title',
     textKey: 'casos.card1.text',

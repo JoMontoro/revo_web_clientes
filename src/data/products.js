@@ -6,7 +6,7 @@ export const products = [
     benefitKey: 'productos.benefit1',
     tagKeys: ['productos.tag1a', 'productos.tag1b'],
     sectors: ['automotriz', 'construccion', 'municipal'],
-    image: 'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=300&q=80',
+    image: 'https://image.made-in-china.com/202f0j00jntQAwzUEPpm/Black-with-Yellow-Rubber-Parking-Stopper-Wheel-Stop.webp',
     alt: 'Topes de estacionamiento',
     detail: {
       icon: 'bi-sign-stop-fill',
@@ -29,7 +29,7 @@ export const products = [
     benefitKey: 'productos.benefit2',
     tagKeys: ['productos.tag2a', 'productos.tag2b'],
     sectors: ['mineria', 'construccion'],
-    image: 'https://images.unsplash.com/photo-1581092335871-4bf1c4c3c5c6?w=300&q=80',
+    image: 'https://kingdaflex.com/wp-content/uploads/2026/03/hydraulic-hose-protection.webp',
     alt: 'Protectores para cables',
     detail: {
       icon: 'bi-plug-fill',
@@ -52,7 +52,7 @@ export const products = [
     benefitKey: 'productos.benefit3',
     tagKeys: ['productos.tag3a', 'productos.tag3b'],
     sectors: ['municipal', 'deportivo', 'construccion'],
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoUEgmAbkfG3fKb_botCdxMthSf22qi_0V4vEWLIX2yvs4SP-Ie7FtgL8j&s=10',
     alt: 'Losetas amortiguantes',
     detail: {
       icon: 'bi-grid-3x3-gap-fill',
@@ -75,7 +75,7 @@ export const products = [
     benefitKey: 'productos.benefit4',
     tagKeys: ['productos.tag4a', 'productos.tag4b'],
     sectors: ['automotriz', 'mineria'],
-    image: 'https://images.unsplash.com/photo-1590674899484-d5640d0f7b3a?w=600&q=80',
+    image: 'https://www.muchoneumatico.com/blog/wp-content/uploads/2024/08/Unas-Cunas-para-ruedas-de-camiones.jpg',
     alt: 'Cuñas para vehículos',
     detail: {
       icon: 'bi-truck-front-fill',
@@ -98,7 +98,7 @@ export const products = [
     benefitKey: 'productos.benefit5',
     tagKeys: ['productos.tag5a', 'productos.tag5b'],
     sectors: ['automotriz', 'construccion', 'deportivo'],
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80',
+    image: 'https://cronoslife.com/cdn/shop/files/Pisos-de-caucho-en-rollo-precios-1.jpg?v=1758139430&width=800',
     alt: 'Pisos de caucho',
     detail: {
       icon: 'bi-layers-fill',
@@ -121,7 +121,7 @@ export const products = [
     benefitKey: 'productos.benefit6',
     tagKeys: ['productos.tag6a', 'productos.tag6b'],
     sectors: ['construccion', 'municipal', 'deportivo'],
-    image: 'https://images.unsplash.com/photo-1543286386-713bdd548da4?w=600&q=80',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi6jVIiMGlS_lZv3BxesevAwpOUV1E48IdvgeAg4E3MUsoXm_9n14JaiI&s=10',
     alt: 'Caucho granulado',
     detail: {
       icon: 'bi-circle-fill',
