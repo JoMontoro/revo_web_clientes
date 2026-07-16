@@ -105,6 +105,11 @@ export default function ImpactCalculator() {
               <strong>{material} t</strong>
               <small>{t('impacto.card2d')}</small>
             </div>
+            <div className="impact-card">
+              <span className="muted">{t('impacto.card3')}</span>
+              <strong>{co2.toLocaleString(lang === 'en' ? 'en-US' : 'es-PE')} t CO₂</strong>
+              <small>{t('impacto.card3d')}</small>
+            </div>
           </div>
 
           {showChart && (

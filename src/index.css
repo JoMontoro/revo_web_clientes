@@ -217,7 +217,7 @@ p { margin: 0; }
 .share-btn:hover { background: var(--brand-soft); color: var(--brand-dark); border-color: var(--brand); }
 
 .impact-controls { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: end; }
-.impact-result { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 20px; align-items: stretch; }
+.impact-result { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-top: 20px; align-items: stretch; }
 .impact-card { padding: 18px; background: var(--surface-2); border-radius: 16px; display: flex; flex-direction: column; justify-content: space-between; min-height: 140px; }
 .impact-card strong { font-size: 28px; display: block; }
 
