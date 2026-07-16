@@ -164,7 +164,6 @@ export default function QuoteForm({ onSaveLead }) {
 
               <div className="share-actions">
                 <button className="share-btn" onClick={handleSave}><i className="bi bi-bookmark-check"></i> {t('cotizar.save')}</button>
-                <button className="share-btn" onClick={handlePrint}><i className="bi bi-printer"></i> {t('cotizar.print.btn')}</button>
                 <button className="share-btn" onClick={handlePDF}><i className="bi bi-file-earmark-pdf"></i> {t('cotizar.pdf.btn')}</button>
               </div>
             </div>

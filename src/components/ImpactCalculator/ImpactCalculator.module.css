@@ -3,4 +3,52 @@
   padding: 18px;
   background: var(--surface-2);
   border-radius: 16px;
+  display: grid;
+  gap: 16px;
+}
+
+.chartSummary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(320px, 100%);
+  margin: 0 auto;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, rgba(22, 138, 88, 0.14), rgba(53, 193, 127, 0.14));
+  border: 1px solid rgba(22, 138, 88, 0.22);
+  border-radius: 20px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.35);
+}
+
+.chartSummaryLabel {
+  margin: 0 0 2px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.chartSummaryValue {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-align: center;
+}
+
+.chartSummaryText {
+  margin: 0;
+  max-width: 420px;
+  color: var(--text-2);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 680px) {
+  .chartSummary {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

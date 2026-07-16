@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useToast } from '../../context/ToastContext';
 import { Bar } from 'react-chartjs-2';
@@ -21,14 +21,37 @@ export default function ImpactCalculator() {
 
   const chartData = {
     labels: lang === 'en'
-      ? ['NFU reused', 'CO₂ avoided (t)', 'Energy saved (kWh)']
-      : ['NFU aprovechados', 'CO₂ evitado (t)', 'Energía ahorrada (kWh)'],
+      ? ['NFU reused', 'Energy saved (kWh)']
+      : ['NFU aprovechados', 'Energía ahorrada (kWh)'],
     datasets: [{
       label: lang === 'en' ? 'Environmental impact' : 'Impacto ambiental',
-      data: [tires, co2, energy],
-      backgroundColor: ['#168a58', '#35c17f', '#efb43f'],
+      data: [tires, energy],
+      backgroundColor: ['#168a58', '#efb43f'],
       borderRadius: 8,
     }],
+  };
+
+  const valueLabelsPlugin = {
+    id: 'valueLabels',
+    afterDatasetsDraw(chart) {
+      const { ctx } = chart;
+      chart.data.datasets.forEach((dataset, datasetIndex) => {
+        const meta = chart.getDatasetMeta(datasetIndex);
+        meta.data.forEach((bar, index) => {
+          const value = dataset.data[index];
+          const x = bar.x;
+          const y = bar.y;
+
+          ctx.save();
+          ctx.font = 'bold 12px Inter, sans-serif';
+          ctx.fillStyle = '#1f2937';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'bottom';
+          ctx.fillText(value.toLocaleString(lang === 'en' ? 'en-US' : 'es-PE'), x, y - 6);
+          ctx.restore();
+        });
+      });
+    },
   };
 
   const chartOptions = {
@@ -52,7 +75,6 @@ export default function ImpactCalculator() {
           <div className="copy">
             <span className="eyebrow">{t('impacto.eyebrow')}</span>
             <h2>{t('impacto.title')}</h2>
-            <p className="lead">{t('impacto.subtitle')}</p>
           </div>
         </div>
 
@@ -83,16 +105,17 @@ export default function ImpactCalculator() {
               <strong>{material} t</strong>
               <small>{t('impacto.card2d')}</small>
             </div>
-            <div className="impact-card">
-              <span className="muted">{t('impacto.card3')}</span>
-              <strong>{trips}</strong>
-              <small>{t('impacto.card3d')}</small>
-            </div>
           </div>
 
           {showChart && (
             <div className={styles.chartWrap}>
-              <Bar data={chartData} options={chartOptions} />
+              <div className={styles.chartSummary}>
+                <div>
+                  <p className={styles.chartSummaryLabel}>{t('impacto.co2title')}</p>
+                  <p className={styles.chartSummaryValue}>{co2} t CO₂</p>
+                </div>
+              </div>
+              <Bar data={chartData} options={chartOptions} plugins={[valueLabelsPlugin]} />
             </div>
           )}
         </div>
