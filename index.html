@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="REVO Match Circular conecta productos derivados de neumáticos fuera de uso con empresas que buscan soluciones sostenibles, técnicas y trazables." />
-  <title>REVO Match Circular | Productos de NFU para empresas</title>
+  <meta name="theme-color" content="#168a58" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="REVO Match" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23168a58'/%3E%3Ctext x='16' y='23' font-size='18' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3ER%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <title data-i18n="page.title">REVO Match Circular | Productos de NFU para empresas</title>
   <style>
     :root{
       --bg:#f7faf8;
@@ -20,7 +27,53 @@
       --danger:#cf4b4b;
       --shadow:0 18px 48px rgba(19,73,49,.10);
       --radius:22px;
+      --header-bg:rgba(247,250,248,.88);
+      --hero-bg:
+        radial-gradient(circle at 80% 10%,rgba(53,193,127,.18),transparent 28%),
+        radial-gradient(circle at 15% 10%,rgba(239,180,63,.13),transparent 25%),
+        linear-gradient(180deg,#fbfdfc,#f7faf8);
+      --orbit-bg:radial-gradient(circle,#fff 0 42%,#e8f5ee 43% 64%,transparent 65%);
+      --card-bg:#fff;
+      --footer-bg:#fff;
     }
+
+    [data-theme="dark"]{
+      --bg:#0d1612;
+      --surface:#16231d;
+      --surface-2:#1a2b22;
+      --text:#e0ece5;
+      --muted:#8fa299;
+      --line:#2a3f33;
+      --brand:#28c47e;
+      --brand-dark:#4cdb98;
+      --brand-soft:#0f2e20;
+      --shadow:0 18px 48px rgba(0,0,0,.5);
+      --header-bg:rgba(13,22,18,.92);
+      --hero-bg:
+        radial-gradient(circle at 80% 10%,rgba(53,193,127,.08),transparent 28%),
+        radial-gradient(circle at 15% 10%,rgba(239,180,63,.06),transparent 25%),
+        linear-gradient(180deg,#0d1612,#0f1a15);
+      --orbit-bg:radial-gradient(circle,#0d1612 0 42%,#0f2e20 43% 64%,transparent 65%);
+      --card-bg:var(--surface);
+      --footer-bg:var(--surface);
+    }
+
+    [data-theme="dark"] .site-header{background:var(--header-bg);border-bottom-color:rgba(42,63,51,.8)}
+    [data-theme="dark"] .stat,[data-theme="dark"] .problem-card,[data-theme="dark"] .feature-card,[data-theme="dark"] .product-card,[data-theme="dark"] .sector-card,[data-theme="dark"] .case-card,[data-theme="dark"] .form-card,[data-theme="dark"] .impact-box,[data-theme="dark"] .faq-item,[data-theme="dark"] .faq-q,[data-theme="dark"] .product-modal-card,[data-theme="dark"] .orbit-item{background:var(--surface)}
+    [data-theme="dark"] .btn.secondary{background:var(--surface);border-color:var(--line);color:var(--text)}
+    [data-theme="dark"] .product-art{background:radial-gradient(circle at 20% 20%,rgba(255,255,255,.05),transparent 30%),linear-gradient(145deg,#1a2b22,#16231d)}
+    [data-theme="dark"] .menu-btn{background:var(--surface);color:var(--text)}
+    [data-theme="dark"] .nav-links.open{background:var(--surface);border-color:var(--line)}
+    [data-theme="dark"] .hero{background:var(--hero-bg)}
+    [data-theme="dark"] .hero-orbit{background:var(--orbit-bg)}
+    [data-theme="dark"] .result-card{background:#0f2e20;border-color:#1a4a30}
+    [data-theme="dark"] .result-box{background:var(--surface);border-color:var(--line)}
+    [data-theme="dark"] .impact-card{background:var(--surface-2)}
+    [data-theme="dark"] .product-modal-top{background:rgba(22,138,88,.1)}
+    [data-theme="dark"] .product-modal-note{background:linear-gradient(135deg,#0f2e20,#0a1f16);border-color:#1a4a30}
+    [data-theme="dark"] footer{background:var(--footer-bg);border-top-color:var(--line)}
+    [data-theme="dark"] .how-step{background:var(--surface)}
+    [data-theme="dark"] .btn.dark{background:#1a4a30;color:#fff}
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -30,6 +83,7 @@
       color:var(--text);
       background:var(--bg);
       line-height:1.55;
+      transition:background .3s,color .3s;
     }
 
     button,input,select,textarea{font:inherit}
@@ -77,14 +131,17 @@
     .btn.secondary{background:#fff;border:1px solid var(--line);color:var(--text)}
     .btn.dark{background:#133a2b;color:#fff}
     .btn.small{padding:10px 14px;font-size:14px}
+    .btn.outline{background:transparent;border:1px solid var(--brand);color:var(--brand)}
+    .btn.outline:hover{background:var(--brand);color:#fff}
 
     .site-header{
       position:sticky;
       top:0;
       z-index:30;
-      background:rgba(247,250,248,.88);
+      background:var(--header-bg);
       backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(219,231,224,.8);
+      transition:background .3s;
     }
     .nav{
       height:74px;
@@ -109,15 +166,27 @@
     .logo small{display:block;font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.03em}
     .nav-links{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:750}
     .nav-links a:hover{color:var(--brand)}
-    .menu-btn{display:none;border:1px solid var(--line);background:#fff;width:42px;height:42px;border-radius:12px}
+
+    .header-tools{display:flex;align-items:center;gap:8px}
+    .icon-btn-sm{
+      width:38px;height:38px;border:1px solid var(--line);border-radius:12px;
+      background:var(--card-bg);font-size:18px;display:grid;place-items:center;
+      transition:.2s;color:var(--text);
+    }
+    .icon-btn-sm:hover{background:var(--surface-2)}
+    .lang-btn{
+      padding:6px 10px;border:1px solid var(--line);border-radius:10px;
+      background:var(--card-bg);font-size:12px;font-weight:800;color:var(--text);
+      transition:.2s;
+    }
+    .lang-btn:hover{background:var(--surface-2)}
+    .menu-btn{display:none;border:1px solid var(--line);background:var(--card-bg);width:42px;height:42px;border-radius:12px;color:var(--text)}
 
     .hero{
       padding:86px 0 64px;
-      background:
-        radial-gradient(circle at 80% 10%,rgba(53,193,127,.18),transparent 28%),
-        radial-gradient(circle at 15% 10%,rgba(239,180,63,.13),transparent 25%),
-        linear-gradient(180deg,#fbfdfc,#f7faf8);
+      background:var(--hero-bg);
       overflow:hidden;
+      transition:background .3s;
     }
     .hero-grid{
       display:grid;
@@ -141,9 +210,10 @@
       width:min(500px,100%);
       aspect-ratio:1;
       border-radius:50%;
-      background:radial-gradient(circle,#fff 0 42%,#e8f5ee 43% 64%,transparent 65%);
+      background:var(--orbit-bg);
       position:relative;
       box-shadow:inset 0 0 0 1px rgba(22,138,88,.07);
+      transition:background .3s;
     }
     .center-card{
       position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
@@ -155,11 +225,16 @@
     .center-card strong{font-size:28px;display:block}
     .center-card small{color:#cce5d7}
     .orbit-item{
-      position:absolute;width:148px;padding:14px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:var(--shadow)
+      position:absolute;width:148px;padding:14px;border:1px solid var(--line);border-radius:18px;background:var(--card-bg);box-shadow:var(--shadow);
+      transition:background .3s;
     }
     .orbit-item b{display:block;margin-bottom:4px}
     .orbit-item small{color:var(--muted)}
     .orbit-item .icon{width:42px;height:42px;border-radius:13px;background:var(--brand-soft);display:grid;place-items:center;font-size:20px;margin-bottom:9px}
+    .orbit-item .icon i{font-size:22px;color:var(--brand)}
+    .feature-icon i{font-size:24px;color:var(--brand)}
+    .sector-card span i{font-size:26px;color:var(--brand)}
+    .case-icon i{font-size:24px;color:var(--brand)}
     .o1{top:4%;left:34%}.o2{right:-2%;top:34%}.o3{right:10%;bottom:4%}.o4{left:4%;bottom:8%}.o5{left:-7%;top:35%}
 
     .stats{
@@ -169,8 +244,9 @@
       gap:14px;
     }
     .stat{
-      background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;
-      box-shadow:0 10px 28px rgba(19,73,49,.05)
+      background:var(--card-bg);border:1px solid var(--line);border-radius:18px;padding:18px;
+      box-shadow:0 10px 28px rgba(19,73,49,.05);
+      transition:background .3s;
     }
     .stat strong{font-size:28px;display:block}
     .stat span{font-size:13px;color:var(--muted)}
@@ -184,9 +260,17 @@
     }
     .section-head .copy{display:grid;gap:13px;max-width:760px}
 
+    #problema{position:relative}
+    #problema::before{
+      content:"";position:absolute;top:0;right:0;width:320px;height:320px;
+      background:linear-gradient(145deg,#e6f7f0,#dff2e8);
+      opacity:.06;border-radius:50%;transform:translate(20%,-20%);pointer-events:none;z-index:0
+    }
+    #problema .container{position:relative;z-index:1}
     .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .problem-card,.feature-card,.product-card,.sector-card,.case-card{
-      background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)
+      background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);
+      transition:background .3s;
     }
     .problem-card{padding:24px}
     .problem-card .num{font-size:13px;font-weight:900;color:var(--brand);margin-bottom:18px}
@@ -210,7 +294,7 @@
     .feature-card p{color:var(--muted);margin-top:8px;font-size:14px}
 
     .filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
-    .filter-btn{border:1px solid var(--line);background:#fff;padding:10px 14px;border-radius:999px;font-weight:800;color:var(--muted)}
+    .filter-btn{border:1px solid var(--line);background:var(--card-bg);padding:10px 14px;border-radius:999px;font-weight:800;color:var(--muted)}
     .filter-btn.active,.filter-btn:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
     .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .product-card{overflow:hidden;display:flex;flex-direction:column}
@@ -224,11 +308,26 @@
       position:relative;
       overflow:hidden;
     }
+    .product-art i{
+      width:84px;
+      height:84px;
+      display:grid;
+      place-items:center;
+      font-size:36px;
+      color:var(--brand-dark);
+      background:rgba(22,138,88,.14);
+      border-radius:22px;
+      position:relative;
+      z-index:1;
+    }
+    .product-art img {
+      display:block; width:100%; height:100%; object-fit:cover; position:absolute; inset:0; z-index:1;
+    }
     .product-art::before{
       content:"";position:absolute;width:180px;height:180px;border-radius:50%;
-      border:24px solid #1b2520;opacity:.13;transform:rotate(18deg)
+      border:24px solid #1b2520;opacity:.13;transform:rotate(18deg);z-index:0;
     }
-    .product-shape{font-size:72px;position:relative;z-index:2;filter:drop-shadow(0 12px 12px rgba(0,0,0,.13))}
+
     .product-body{padding:22px;display:grid;gap:12px;flex:1}
     .tags{display:flex;gap:7px;flex-wrap:wrap}
     .tag{font-size:11px;font-weight:850;background:var(--brand-soft);color:var(--brand-dark);padding:6px 8px;border-radius:999px}
@@ -240,8 +339,6 @@
     .product-card:hover{transform:translateY(-2px);box-shadow:0 22px 52px rgba(19,73,49,.12)}
     .product-card{transition:.25s}
 
-    .product-detail{min-width:120px}
-
     .modal-body-grid{display:grid;gap:20px}
     .product-modal-top{display:grid;grid-template-columns:72px 1fr;gap:18px;align-items:center;padding:18px;border-radius:22px;background:rgba(22,138,88,.07);border:1px solid rgba(22,138,88,.14)}
     .product-modal-icon{width:72px;height:72px;border-radius:20px;background:var(--brand-soft);display:grid;place-items:center;font-size:32px}
@@ -249,7 +346,7 @@
     .product-modal-ideal{margin:8px 0 0;color:var(--muted);font-size:14px;line-height:1.6}
     .product-modal-benefit{padding:18px;border-radius:22px;background:#e7f6ef;color:#0f4f35;line-height:1.7;box-shadow:inset 0 0 0 1px rgba(22,138,88,.12)}
     .product-modal-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-    .product-modal-card{padding:16px;background:#fff;border:1px solid #dbe7e0;border-radius:18px;box-shadow:0 14px 36px rgba(19,73,49,.06)}
+    .product-modal-card{padding:16px;background:var(--card-bg);border:1px solid #dbe7e0;border-radius:18px;box-shadow:0 14px 36px rgba(19,73,49,.06)}
     .product-modal-card h4{font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin:0 0 10px;color:var(--brand)}
     .product-modal-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
     .product-specs{display:grid;gap:8px;margin-top:12px;padding-left:18px;list-style:none}
@@ -259,21 +356,16 @@
 
     .sector-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
     .sector-card{padding:20px;text-align:center}
-    .sector-card span{font-size:30px;display:block;margin-bottom:12px}
+    .sector-card span{display:grid;place-items:center;width:56px;height:56px;border-radius:18px;background:var(--brand-soft);margin:0 auto 12px}
     .sector-card small{color:var(--muted);display:block;margin-top:6px}
 
     .how{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .how-step{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+    .how-step{position:relative;background:var(--card-bg);border:1px solid var(--line);border-radius:20px;padding:22px}
     .how-step .step{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:900;margin-bottom:16px}
     .how-step p{color:var(--muted);margin-top:8px;font-size:14px}
     .how-step:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:46%;font-size:26px;color:var(--brand);font-weight:900;z-index:3}
 
-    .quote-wrap{
-      display:grid;
-      grid-template-columns:.9fr 1.1fr;
-      gap:24px;
-      align-items:start;
-    }
+    .quote-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:start}
     .quote-info{
       background:linear-gradient(145deg,#153d2d,#0e5e3d);
       color:#fff;border-radius:26px;padding:30px;position:sticky;top:96px
@@ -283,53 +375,64 @@
     .quote-point{display:flex;gap:10px;align-items:flex-start}
     .quote-point i{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.13);display:grid;place-items:center;font-style:normal;flex:0 0 auto}
 
-    .form-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--shadow)}
+    .form-card{background:var(--card-bg);border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--shadow)}
     .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .field{display:flex;flex-direction:column;gap:7px}
     .field.full{grid-column:1/-1}
     .field label{font-size:13px;font-weight:850}
     .field input,.field select,.field textarea{
-      border:1px solid var(--line);border-radius:13px;padding:12px 13px;outline:none;background:#fff
+      border:1px solid var(--line);border-radius:13px;padding:12px 13px;outline:none;background:var(--card-bg);color:var(--text)
     }
     .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(22,138,88,.08)}
-    .form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+    .form-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px;flex-wrap:wrap}
     .result-card{
       display:none;margin-top:18px;border:1px solid #bfe5cf;background:#effaf4;border-radius:18px;padding:18px
     }
     .result-card.show{display:block}
     .result-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}
-    .result-box{background:#fff;border:1px solid #dcebe3;border-radius:14px;padding:13px}
+    .result-box{background:var(--card-bg);border:1px solid #dcebe3;border-radius:14px;padding:13px}
     .result-box strong{font-size:20px;display:block}
+    .share-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .share-btn{
+      padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--card-bg);
+      font-size:12px;font-weight:800;color:var(--muted);transition:.2s;display:inline-flex;align-items:center;gap:6px
+    }
+    .share-btn:hover{background:var(--brand-soft);color:var(--brand-dark);border-color:var(--brand)}
 
     .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
     .case-card{padding:22px}
-    .case-card .case-icon{font-size:30px}
+    .case-card .case-icon{font-size:30px;display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:var(--brand-soft);margin-bottom:12px}
     .case-card p{color:var(--muted);margin:10px 0 16px}
     .case-meta{display:flex;justify-content:space-between;gap:10px;font-size:13px;font-weight:800;color:var(--brand)}
 
     .impact-box{
-      background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--shadow)
+      background:var(--card-bg);border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--shadow)
     }
     .impact-controls{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:end}
     .impact-result{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
     .impact-card{padding:18px;background:var(--surface-2);border-radius:16px}
     .impact-card strong{font-size:28px;display:block}
+    .chart-wrap{margin-top:24px;padding:18px;background:var(--surface-2);border-radius:16px;display:none}
+    .chart-wrap.show{display:block}
 
     .faq{display:grid;gap:12px}
-    .faq-item{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
-    .faq-q{width:100%;border:0;background:#fff;text-align:left;padding:18px 20px;font-weight:850;display:flex;justify-content:space-between;gap:12px}
+    .faq-item{background:var(--card-bg);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+    .faq-q{width:100%;border:0;background:var(--card-bg);text-align:left;padding:18px 20px;font-weight:850;display:flex;justify-content:space-between;gap:12px;color:var(--text)}
     .faq-a{display:none;padding:0 20px 18px;color:var(--muted)}
     .faq-item.open .faq-a{display:block}
     .faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
 
     .cta{
       background:linear-gradient(145deg,#153d2d,#0d5e3c);
+      background-blend-mode:overlay;
+      background-size:cover;
+      background-position:center;
       color:#fff;border-radius:30px;padding:42px;
       display:flex;justify-content:space-between;align-items:center;gap:30px
     }
     .cta p{color:#d1e3da;margin-top:12px;max-width:700px}
 
-    footer{padding:36px 0;border-top:1px solid var(--line);background:#fff}
+    footer{padding:36px 0;border-top:1px solid var(--line);background:var(--footer-bg)}
     .footer-grid{display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
     .footer-links{display:flex;gap:18px;color:var(--muted);font-size:14px}
 
@@ -337,9 +440,10 @@
       position:fixed;inset:0;background:rgba(9,30,21,.52);display:none;align-items:center;justify-content:center;padding:20px;z-index:50
     }
     .modal.open{display:flex}
-    .modal-card{width:min(680px,100%);background:#fff;border-radius:24px;padding:24px;box-shadow:0 30px 90px rgba(0,0,0,.28)}
+    .modal-card{width:min(680px,100%);max-height:90vh;overflow-y:auto;background:var(--card-bg);border-radius:24px;padding:24px;box-shadow:0 30px 90px rgba(0,0,0,.28)}
     .modal-head{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:18px}
     .icon-btn{width:38px;height:38px;border:0;border-radius:12px;background:#eef3f0;font-size:20px}
+
     .toast{position:fixed;right:22px;bottom:22px;background:#123d2e;color:#fff;padding:14px 17px;border-radius:13px;box-shadow:0 18px 50px rgba(0,0,0,.22);opacity:0;transform:translateY(12px);transition:.25s;z-index:70}
     .toast.show{opacity:1;transform:translateY(0)}
 
@@ -347,14 +451,40 @@
     .proposal-print .print-row{display:grid;grid-template-columns:minmax(140px,1fr) 2fr;gap:10px;margin-bottom:10px;font-size:14px}
     .proposal-print .print-row strong{color:#1f4d38}
 
+    /* Lead dashboard */
+    .lead-count{font-size:12px;color:var(--muted);cursor:pointer;text-decoration:underline dotted}
+    .lead-count:hover{color:var(--brand)}
+    .lead-table{width:100%;border-collapse:collapse;font-size:13px}
+    .lead-table th{text-align:left;padding:10px 8px;border-bottom:2px solid var(--line);color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+    .lead-table td{padding:10px 8px;border-bottom:1px solid var(--line);color:var(--text)}
+    .lead-table tr:hover td{background:var(--surface-2)}
+    .lead-empty{text-align:center;padding:30px;color:var(--muted)}
+    .badge{padding:3px 8px;border-radius:999px;font-size:11px;font-weight:800}
+    .badge.high{background:#e7f6ef;color:#0d5e3c}
+    .badge.medium{background:#fef3d6;color:#946800}
+    .badge.low{background:#fde8e8;color:#b33a3a}
+
+    /* Scroll reveal */
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.show{opacity:1;transform:translateY(0)}
+    .reveal-left{opacity:0;transform:translateX(-30px);transition:opacity .6s ease,transform .6s ease}
+    .reveal-left.show{opacity:1;transform:translateX(0)}
+    .reveal-right{opacity:0;transform:translateX(30px);transition:opacity .6s ease,transform .6s ease}
+    .reveal-right.show{opacity:1;transform:translateX(0)}
+    .reveal-scale{opacity:0;transform:scale(.92);transition:opacity .6s ease,transform .6s ease}
+    .reveal-scale.show{opacity:1;transform:scale(1)}
+
     @media print {
-      body * { visibility:hidden !important; }
-      #quoteResult, #quoteResult * { visibility:visible !important; }
-      #quoteResult { position:absolute; top:0; left:0; width:100%; padding:0 18px 18px; }
-      #quoteResult .form-actions, #quoteResult .btn { display:none !important; }
-      .proposal-print { display:block !important; }
+      body * { visibility:hidden !important; display:none !important; }
+      #proposalTemplate, #proposalTemplate * { visibility:visible !important; display:block !important; }
+      #proposalTemplate { position:absolute; top:0; left:0; width:100%; background:#fff; }
+      #proposalTemplate table { display:table !important; }
+      #proposalTemplate table tr { display:table-row !important; }
+      #proposalTemplate table td { display:table-cell !important; }
+      #proposalTemplate .proposal-print { display:block !important; }
       .no-print { display:none !important; }
       .print-row { page-break-inside: avoid; }
+      #proposalTemplate [id^="prop"] { display:block !important; }
     }
 
     @media(max-width:1050px){
@@ -370,9 +500,10 @@
     }
     @media(max-width:760px){
       .section{padding:68px 0}
-      .nav-links{display:none;position:absolute;top:74px;left:16px;right:16px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;flex-direction:column;align-items:flex-start;box-shadow:var(--shadow)}
+      .nav-links{display:none;position:absolute;top:74px;left:16px;right:16px;background:var(--card-bg);border:1px solid var(--line);border-radius:16px;padding:16px;flex-direction:column;align-items:flex-start;box-shadow:var(--shadow)}
       .nav-links.open{display:flex}
       .menu-btn{display:inline-grid;place-items:center}
+      .header-tools .nav-links{display:none}
       .hero{padding-top:56px}
       .hero-grid{gap:30px}
       .hero-visual{min-height:420px}
@@ -393,19 +524,23 @@
   <div class="container nav">
     <a href="#inicio" class="logo">
       <span class="logo-mark">R</span>
-      <span>REVO Match Circular<small>Del neumático valorizado al cliente correcto</small></span>
+      <span>REVO Match Circular<small data-i18n="header.tagline">Del neumático valorizado al cliente correcto</small></span>
     </a>
 
     <nav class="nav-links" id="navLinks">
-      <a href="#solucion">Solución</a>
-      <a href="#productos">Productos</a>
-      <a href="#sectores">Sectores</a>
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#cotizar">Cotizar</a>
-      <a class="btn primary small" href="#cotizar">Encontrar una solución</a>
+      <a href="#solucion" data-i18n="nav.solution">Solución</a>
+      <a href="#productos" data-i18n="nav.products">Productos</a>
+      <a href="#sectores" data-i18n="nav.sectors">Sectores</a>
+      <a href="#como-funciona" data-i18n="nav.how">Cómo funciona</a>
+      <a href="#cotizar" data-i18n="nav.quote">Cotizar</a>
+      <a class="btn primary small" href="#cotizar" data-i18n="nav.cta">Encontrar una solución</a>
     </nav>
 
-    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+    <div class="header-tools">
+      <button class="lang-btn" id="langToggle" title="Switch language">ES</button>
+      <button class="icon-btn-sm" id="themeToggle" title="Cambiar tema"><i class="bi bi-moon-fill"></i></button>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú"><i class="bi bi-list"></i></button>
+    </div>
   </div>
 </header>
 
@@ -413,19 +548,19 @@
   <section class="hero" id="inicio">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Economía circular aplicada al mercado</span>
-        <h1>Productos reciclados de NFU que sí llegan al cliente correcto.</h1>
-        <p class="lead">
+        <span class="eyebrow" data-i18n="hero.eyebrow">Economía circular aplicada al mercado</span>
+        <h1 data-i18n="hero.title">Productos reciclados de NFU que sí llegan al cliente correcto.</h1>
+        <p class="lead" data-i18n="hero.subtitle">
           Conectamos caucho granulado y productos derivados de neumáticos fuera de uso con empresas que buscan soluciones técnicas, sostenibles y trazables.
         </p>
         <div class="hero-actions">
-          <a class="btn primary" href="#cotizar">Solicitar una propuesta</a>
-          <a class="btn secondary" href="#productos">Explorar productos</a>
+          <a class="btn primary" href="#cotizar" data-i18n="hero.cta1">Solicitar una propuesta</a>
+          <a class="btn secondary" href="#productos" data-i18n="hero.cta2">Explorar productos</a>
         </div>
         <div class="trust-row">
-          <span><i>✓</i> Oferta validada</span>
-          <span><i>✓</i> Trazabilidad del material</span>
-          <span><i>✓</i> Distribución consolidada</span>
+          <span><i class="bi bi-check-circle-fill" style="color:var(--brand);font-size:14px"></i> <span data-i18n="hero.trust1">Oferta validada</span></span>
+          <span><i class="bi bi-check-circle-fill" style="color:var(--brand);font-size:14px"></i> <span data-i18n="hero.trust2">Trazabilidad del material</span></span>
+          <span><i class="bi bi-check-circle-fill" style="color:var(--brand);font-size:14px"></i> <span data-i18n="hero.trust3">Distribución consolidada</span></span>
         </div>
       </div>
 
@@ -434,213 +569,246 @@
           <div class="center-card">
             <div>
               <strong>NFU</strong>
-              <small>de residuo a solución comercial</small>
+              <small data-i18n="hero.orbit.label">de residuo a solución comercial</small>
             </div>
           </div>
-          <div class="orbit-item o1"><div class="icon">🏭</div><b>Valorización</b><small>Material disponible</small></div>
-          <div class="orbit-item o2"><div class="icon">🔎</div><b>Matching</b><small>Cliente compatible</small></div>
-          <div class="orbit-item o3"><div class="icon">🚚</div><b>Distribución</b><small>Ruta sostenible</small></div>
-          <div class="orbit-item o4"><div class="icon">♻️</div><b>Impacto</b><small>Circularidad medible</small></div>
-          <div class="orbit-item o5"><div class="icon">🧩</div><b>Producto</b><small>Solución técnica</small></div>
+          <div class="orbit-item o1"><div class="icon"><i class="bi bi-gear-wide-connected"></i></div><b data-i18n="hero.orbit.o1">Valorización</b><small data-i18n="hero.orbit.o1d">Material disponible</small></div>
+          <div class="orbit-item o2"><div class="icon"><i class="bi bi-search-heart"></i></div><b data-i18n="hero.orbit.o2">Matching</b><small data-i18n="hero.orbit.o2d">Cliente compatible</small></div>
+          <div class="orbit-item o3"><div class="icon"><i class="bi bi-truck"></i></div><b data-i18n="hero.orbit.o3">Distribución</b><small data-i18n="hero.orbit.o3d">Ruta sostenible</small></div>
+          <div class="orbit-item o4"><div class="icon"><i class="bi bi-arrow-repeat"></i></div><b data-i18n="hero.orbit.o4">Impacto</b><small data-i18n="hero.orbit.o4d">Circularidad medible</small></div>
+          <div class="orbit-item o5"><div class="icon"><i class="bi bi-grid-3x3-gap-fill"></i></div><b data-i18n="hero.orbit.o5">Producto</b><small data-i18n="hero.orbit.o5d">Solución técnica</small></div>
         </div>
       </div>
     </div>
 
     <div class="container stats">
-      <div class="stat"><strong>6+</strong><span>familias de productos circulares</span></div>
-      <div class="stat"><strong>5</strong><span>sectores empresariales priorizados</span></div>
-      <div class="stat"><strong>B2B</strong><span>enfoque comercial directo</span></div>
-      <div class="stat"><strong>100%</strong><span>trazabilidad demostrable por lote</span></div>
+      <div class="stat"><strong>6+</strong><span data-i18n="hero.stat1">familias de productos circulares</span></div>
+      <div class="stat"><strong>5</strong><span data-i18n="hero.stat2">sectores empresariales priorizados</span></div>
+      <div class="stat"><strong>B2B</strong><span data-i18n="hero.stat3">enfoque comercial directo</span></div>
+      <div class="stat"><strong>100%</strong><span data-i18n="hero.stat4">trazabilidad demostrable por lote</span></div>
     </div>
   </section>
 
-  <section class="section" id="problema">
+  <section class="section reveal" id="problema">
     <div class="container">
       <div class="section-head">
         <div class="copy">
-          <span class="eyebrow">como nace Revo</span>
-          <h2>Una propuesta diseñada para visibilizar productos circulares y conectar oferta con demanda.</h2>
-          <p class="lead">Esta página nace para demostrar cómo el caucho reciclado puede convertirse en soluciones comerciales claras, trazables y útiles para empresas.</p>
+          <span class="eyebrow" data-i18n="problema.eyebrow">como nace Revo</span>
+          <h2 data-i18n="problema.title">Una propuesta diseñada para visibilizar productos circulares y conectar oferta con demanda.</h2>
+          <p class="lead" data-i18n="problema.subtitle">Esta página nace para demostrar cómo el caucho reciclado puede convertirse en soluciones comerciales claras, trazables y útiles para empresas.</p>
         </div>
       </div>
 
       <div class="problem-grid">
         <article class="problem-card">
-          <div class="num">01 · PROPÓSITO</div>
-          <h3>Buscamos demostrar que los productos derivados derivados de Neumáticos</h3>
-          <p>Queremos explicar por qué los productos derivados de neumáticos fuera de uso son una alternativa viable y sostenible para el mercado. NFU</p>
+          <div class="num">01 · <span data-i18n="problema.card1.title">PROPÓSITO</span></div>
+          <h3 data-i18n="problema.card1.heading">Buscamos demostrar que los productos derivados de Neumáticos</h3>
+          <p data-i18n="problema.card1.text">Queremos explicar por qué los productos derivados de neumáticos fuera de uso son una alternativa viable y sostenible para el mercado. NFU</p>
         </article>
         <article class="problem-card">
-          <div class="num">02 · MOTIVO</div>
-          <h3>Apostamos por esta propuesta comercial que facilita la reconversión</h3>
-          <p>La página fue creada para apoyar una propuesta comercial que facilite la reconversión de residuo en insumo para empresas.</p>
+          <div class="num">02 · <span data-i18n="problema.card2.title">MOTIVO</span></div>
+          <h3 data-i18n="problema.card2.heading">Apostamos por esta propuesta comercial que facilita la reconversión</h3>
+          <p data-i18n="problema.card2.text">La página fue creada para apoyar una propuesta comercial que facilite la reconversión de residuo en insumo para empresas.</p>
         </article>
         <article class="problem-card">
-          <div class="num">03 · VISIÓN</div>
-          <h3>Vincular oferta y demanda</h3>
-          <p>El objetivo es conectar necesidades reales del cliente con productos reciclados, dejando atrás la idea de que reciclar basta por sí solo.</p>
+          <div class="num">03 · <span data-i18n="problema.card3.title">VISIÓN</span></div>
+          <h3 data-i18n="problema.card3.heading">Vincular oferta y demanda</h3>
+          <p data-i18n="problema.card3.text">El objetivo es conectar necesidades reales del cliente con productos reciclados, dejando atrás la idea de que reciclar basta por sí solo.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section alt" id="solucion">
+  <section class="section alt reveal" id="solucion">
     <div class="container">
       <div class="solution-band">
-        <div>
-          <span class="eyebrow">La solución</span>
-          <h2 style="margin-top:14px">REVO Match Circular</h2>
-          <p>Una plataforma comercial que muestra productos derivados de NFU, identifica compradores compatibles y organiza una entrega sostenible.</p>
+        <div style="display:grid;grid-template-columns:1fr 160px;gap:24px;align-items:center;width:100%">
+          <div>
+            <span class="eyebrow" data-i18n="solucion.eyebrow">La solución</span>
+            <h2 style="margin-top:14px">REVO Match Circular</h2>
+            <p data-i18n="solucion.text">Una plataforma comercial que muestra productos derivados de NFU, identifica compradores compatibles y organiza una entrega sostenible.</p>
+            <a class="btn primary" href="#cotizar" data-i18n="solucion.cta" style="margin-top:16px">Publicar una necesidad</a>
+          </div>
+          <div style="width:160px;height:160px;border-radius:20px;background:var(--brand-soft);display:grid;place-items:center;box-shadow:0 12px 32px rgba(0,0,0,.2)"><i class="bi bi-arrow-repeat" style="font-size:56px;color:var(--brand)"></i></div>
         </div>
-        <a class="btn primary" href="#cotizar">Publicar una necesidad</a>
       </div>
 
       <div class="features">
         <article class="feature-card">
-          <div class="feature-icon">🛒</div>
-          <h3>Catálogo B2B</h3>
-          <p>Productos con aplicaciones, disponibilidad, ubicación y ficha técnica.</p>
+          <div class="feature-icon"><i class="bi bi-bag-check"></i></div>
+          <h3 data-i18n="solucion.feat1.title">Catálogo B2B</h3>
+          <p data-i18n="solucion.feat1.text">Productos con aplicaciones, disponibilidad, ubicación y ficha técnica.</p>
         </article>
         <article class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h3>Matching comercial</h3>
-          <p>La necesidad del cliente se vincula con el producto más compatible.</p>
+          <div class="feature-icon"><i class="bi bi-bullseye"></i></div>
+          <h3 data-i18n="solucion.feat2.title">Matching comercial</h3>
+          <p data-i18n="solucion.feat2.text">La necesidad del cliente se vincula con el producto más compatible.</p>
         </article>
         <article class="feature-card">
-          <div class="feature-icon">📦</div>
-          <h3>Pedidos consolidados</h3>
-          <p>Agrupamos entregas para reducir costos y viajes innecesarios.</p>
+          <div class="feature-icon"><i class="bi bi-box-seam"></i></div>
+          <h3 data-i18n="solucion.feat3.title">Pedidos consolidados</h3>
+          <p data-i18n="solucion.feat3.text">Agrupamos entregas para reducir costos y viajes innecesarios.</p>
         </article>
         <article class="feature-card">
-          <div class="feature-icon">🔗</div>
-          <h3>Trazabilidad</h3>
-          <p>Cada lote puede mostrar origen, proceso de valorización y destino.</p>
+          <div class="feature-icon"><i class="bi bi-link-45deg"></i></div>
+          <h3 data-i18n="solucion.feat4.title">Trazabilidad</h3>
+          <p data-i18n="solucion.feat4.text">Cada lote puede mostrar origen, proceso de valorización y destino.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section" id="productos">
+  <section class="section reveal" id="productos">
     <div class="container">
       <div class="section-head">
         <div class="copy">
-          <span class="eyebrow">Soluciones disponibles</span>
-          <h2>Productos que resuelven necesidades reales.</h2>
-          <p class="lead">Filtra por sector y descubre aplicaciones comerciales del caucho reciclado.</p>
+          <span class="eyebrow" data-i18n="productos.eyebrow">Soluciones disponibles</span>
+          <h2 data-i18n="productos.title">Productos que resuelven necesidades reales.</h2>
+          <p class="lead" data-i18n="productos.subtitle">Filtra por sector y descubre aplicaciones comerciales del caucho reciclado.</p>
         </div>
       </div>
 
       <div class="filters" id="productFilters">
-        <button class="filter-btn active" data-filter="todos">Todos</button>
-        <button class="filter-btn" data-filter="automotriz">Automotriz</button>
-        <button class="filter-btn" data-filter="mineria">Minería</button>
-        <button class="filter-btn" data-filter="construccion">Construcción</button>
-        <button class="filter-btn" data-filter="municipal">Municipal</button>
-        <button class="filter-btn" data-filter="deportivo">Deportivo</button>
+        <button class="filter-btn active" data-filter="todos" data-i18n="productos.filterAll">Todos</button>
+        <button class="filter-btn" data-filter="automotriz" data-i18n="productos.filterAuto">Automotriz</button>
+        <button class="filter-btn" data-filter="mineria" data-i18n="productos.filterMin">Minería</button>
+        <button class="filter-btn" data-filter="construccion" data-i18n="productos.filterConst">Construcción</button>
+        <button class="filter-btn" data-filter="municipal" data-i18n="productos.filterMun">Municipal</button>
+        <button class="filter-btn" data-filter="deportivo" data-i18n="productos.filterDep">Deportivo</button>
       </div>
 
       <div class="product-grid" id="productGrid">
         <article class="product-card" data-sector="automotriz construccion municipal">
-          <div class="product-art"><div class="product-shape">🅿️</div></div>
+          <div class="product-art"><i class="bi bi-car-front-fill" aria-hidden="true"></i></div>
           <div class="product-body">
-            <div class="tags"><span class="tag">Automotriz</span><span class="tag">Estacionamientos</span></div>
-            <h3>Topes de estacionamiento</h3>
-            <p>Solución resistente para concesionarios, estacionamientos, centros comerciales y almacenes.</p>
-            <p class="product-benefit">Beneficio: protege pavimentos y mejora la seguridad del flujo vehicular con una instalación rápida y duradera.</p>
-            <div class="product-footer"><span class="match">Alta viabilidad comercial</span><button class="btn secondary small product-detail" data-product="Topes de estacionamiento">Ver ficha</button></div>
+            <div class="tags"><span class="tag" data-i18n="productos.tag1a">Automotriz</span><span class="tag" data-i18n="productos.tag1b">Estacionamientos</span></div>
+            <h3 data-i18n="productos.name1">Topes de estacionamiento</h3>
+            <p data-i18n="productos.desc1">Solución resistente para concesionarios, estacionamientos, centros comerciales y almacenes.</p>
+            <p class="product-benefit" data-i18n="productos.benefit1">Beneficio: protege pavimentos y mejora la seguridad del flujo vehicular con una instalación rápida y duradera.</p>
+            <div class="product-footer"><span class="match" data-i18n="productos.match1">Alta viabilidad comercial</span></div>
           </div>
         </article>
 
         <article class="product-card" data-sector="mineria construccion">
-          <div class="product-art"><div class="product-shape">🔌</div></div>
+          <div class="product-art"><i class="bi bi-plug-fill" aria-hidden="true"></i></div>
           <div class="product-body">
-            <div class="tags"><span class="tag">Minería</span><span class="tag">Industria</span></div>
-            <h3>Protectores para cables</h3>
-            <p>Protección de tendidos eléctricos y mangueras en zonas de tránsito de equipos móviles.</p>
-            <p class="product-benefit">Beneficio: reduce riesgos de corte y abrasión, alargando la vida útil de instalaciones críticas en ambientes agresivos.</p>
-            <div class="product-footer"><span class="match">Producto de alto valor</span><button class="btn secondary small product-detail" data-product="Protectores para cables">Ver ficha</button></div>
+            <div class="tags"><span class="tag" data-i18n="productos.tag2a">Minería</span><span class="tag" data-i18n="productos.tag2b">Industria</span></div>
+            <h3 data-i18n="productos.name2">Protectores para cables</h3>
+            <p data-i18n="productos.desc2">Protección de tendidos eléctricos y mangueras en zonas de tránsito de equipos móviles.</p>
+            <p class="product-benefit" data-i18n="productos.benefit2">Beneficio: reduce riesgos de corte y abrasión, alargando la vida útil de instalaciones críticas en ambientes agresivos.</p>
+            <div class="product-footer"><span class="match" data-i18n="productos.match2">Producto de alto valor</span></div>
           </div>
         </article>
 
         <article class="product-card" data-sector="municipal deportivo construccion">
-          <div class="product-art"><div class="product-shape">🧱</div></div>
+          <div class="product-art"><i class="bi bi-grid-3x3-gap-fill" aria-hidden="true"></i></div>
           <div class="product-body">
-            <div class="tags"><span class="tag">Municipal</span><span class="tag">Deportivo</span></div>
-            <h3>Losetas amortiguantes</h3>
-            <p>Superficies para parques infantiles, gimnasios, patios escolares y áreas deportivas.</p>
-            <p class="product-benefit">Beneficio: reduce impactos y lesiones mientras ofrece una alternativa estética y durable para espacios públicos y deportivos.</p>
-            <div class="product-footer"><span class="match">Aplicación visible y escalable</span><button class="btn secondary small product-detail" data-product="Losetas amortiguantes">Ver ficha</button></div>
+            <div class="tags"><span class="tag" data-i18n="productos.tag3a">Municipal</span><span class="tag" data-i18n="productos.tag3b">Deportivo</span></div>
+            <h3 data-i18n="productos.name3">Losetas amortiguantes</h3>
+            <p data-i18n="productos.desc3">Superficies para parques infantiles, gimnasios, patios escolares y áreas deportivas.</p>
+            <p class="product-benefit" data-i18n="productos.benefit3">Beneficio: reduce impactos y lesiones mientras ofrece una alternativa estética y durable para espacios públicos y deportivos.</p>
+            <div class="product-footer"><span class="match" data-i18n="productos.match3">Aplicación visible y escalable</span></div>
           </div>
         </article>
 
         <article class="product-card" data-sector="automotriz mineria">
-          <div class="product-art"><div class="product-shape">🚛</div></div>
+          <div class="product-art"><i class="bi bi-truck-front-fill"></i></div>
           <div class="product-body">
-            <div class="tags"><span class="tag">Minería</span><span class="tag">Transporte</span></div>
-            <h3>Cuñas para vehículos</h3>
-            <p>Elemento de seguridad para vehículos pesados, talleres y zonas de mantenimiento.</p>
-            <p class="product-benefit">Beneficio: evita desplazamientos no deseados y aporta una solución económica para operaciones de carga y estacionamiento.</p>
-            <div class="product-footer"><span class="match">Requiere validación de carga</span><button class="btn secondary small product-detail" data-product="Cuñas para vehículos">Ver ficha</button></div>
+            <div class="tags"><span class="tag" data-i18n="productos.tag4a">Minería</span><span class="tag" data-i18n="productos.tag4b">Transporte</span></div>
+            <h3 data-i18n="productos.name4">Cuñas para vehículos</h3>
+            <p data-i18n="productos.desc4">Elemento de seguridad para vehículos pesados, talleres y zonas de mantenimiento.</p>
+            <p class="product-benefit" data-i18n="productos.benefit4">Beneficio: evita desplazamientos no deseados y aporta una solución económica para operaciones de carga y estacionamiento.</p>
+            <div class="product-footer"><span class="match" data-i18n="productos.match4">Requiere validación de carga</span></div>
           </div>
         </article>
 
         <article class="product-card" data-sector="automotriz construccion deportivo">
-          <div class="product-art"><div class="product-shape">🏋️</div></div>
+          <div class="product-art"><i class="bi bi-layers-fill"></i></div>
           <div class="product-body">
-            <div class="tags"><span class="tag">Talleres</span><span class="tag">Gimnasios</span></div>
-            <h3>Pisos de caucho</h3>
-            <p>Superficie antideslizante y amortiguante para talleres, gimnasios y áreas técnicas.</p>
-            <p class="product-benefit">Beneficio: aporta mayor confort, reduce el ruido y protege al personal frente a impactos de equipos y herramientas.</p>
-            <div class="product-footer"><span class="match">Demanda recurrente</span><button class="btn secondary small product-detail" data-product="Pisos de caucho">Ver ficha</button></div>
+            <div class="tags"><span class="tag" data-i18n="productos.tag5a">Talleres</span><span class="tag" data-i18n="productos.tag5b">Gimnasios</span></div>
+            <h3 data-i18n="productos.name5">Pisos de caucho</h3>
+            <p data-i18n="productos.desc5">Superficie antideslizante y amortiguante para talleres, gimnasios y áreas técnicas.</p>
+            <p class="product-benefit" data-i18n="productos.benefit5">Beneficio: aporta mayor confort, reduce el ruido y protege al personal frente a impactos de equipos y herramientas.</p>
+            <div class="product-footer"><span class="match" data-i18n="productos.match5">Demanda recurrente</span></div>
           </div>
         </article>
 
         <article class="product-card" data-sector="construccion municipal deportivo">
-          <div class="product-art"><div class="product-shape">⚫</div></div>
+          <div class="product-art"><i class="bi bi-circle-fill"></i></div>
           <div class="product-body">
-            <div class="tags"><span class="tag">Materia prima</span><span class="tag">Fabricantes</span></div>
-            <h3>Caucho granulado</h3>
-            <p>Materia prima para fabricantes de pisos, protectores, elementos urbanos y soluciones técnicas.</p>
-            <p class="product-benefit">Beneficio: ofrece una alternativa reciclada flexible para producción en masa, apoyando la trazabilidad y el uso responsable del residuo.</p>
-            <div class="product-footer"><span class="match">Venta por volumen</span><button class="btn secondary small product-detail" data-product="Caucho granulado">Ver ficha</button></div>
+            <div class="tags"><span class="tag" data-i18n="productos.tag6a">Materia prima</span><span class="tag" data-i18n="productos.tag6b">Fabricantes</span></div>
+            <h3 data-i18n="productos.name6">Caucho granulado</h3>
+            <p data-i18n="productos.desc6">Materia prima para fabricantes de pisos, protectores, elementos urbanos y soluciones técnicas.</p>
+            <p class="product-benefit" data-i18n="productos.benefit6">Beneficio: ofrece una alternativa reciclada flexible para producción en masa, apoyando la trazabilidad y el uso responsable del residuo.</p>
+            <div class="product-footer"><span class="match" data-i18n="productos.match6">Venta por volumen</span></div>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section alt" id="sectores">
+  <section class="section alt reveal" id="sectores">
     <div class="container">
       <div class="section-head">
         <div class="copy">
-          <span class="eyebrow">Mercados objetivo</span>
-          <h2>Una solución circular para cada sector.</h2>
+          <span class="eyebrow" data-i18n="sectores.eyebrow">Mercados objetivo</span>
+          <h2 data-i18n="sectores.title">Una solución circular para cada sector.</h2>
         </div>
       </div>
 
       <div class="sector-grid">
-        <article class="sector-card"><span>🚗</span><h3>Automotriz</h3><small>Talleres, concesionarios y estacionamientos.</small></article>
-        <article class="sector-card"><span>⛏️</span><h3>Minería</h3><small>Protección, seguridad y operación industrial.</small></article>
-        <article class="sector-card"><span>🏗️</span><h3>Construcción</h3><small>Pisos, aislamiento y elementos de protección.</small></article>
-        <article class="sector-card"><span>🏙️</span><h3>Municipal</h3><small>Parques, mobiliario y seguridad urbana.</small></article>
-        <article class="sector-card"><span>🏫</span><h3>Educación y deporte</h3><small>Superficies amortiguantes y antideslizantes.</small></article>
+        <article class="sector-card">
+          <span><i class="bi bi-car-front"></i></span><h3 data-i18n="sectores.card1">Automotriz</h3><small data-i18n="sectores.card1d">Talleres, concesionarios y estacionamientos.</small>
+        </article>
+        <article class="sector-card">
+          <span><i class="bi bi-pick"></i></span><h3 data-i18n="sectores.card2">Minería</h3><small data-i18n="sectores.card2d">Protección, seguridad y operación industrial.</small>
+        </article>
+        <article class="sector-card">
+          <span><i class="bi bi-building"></i></span><h3 data-i18n="sectores.card3">Construcción</h3><small data-i18n="sectores.card3d">Pisos, aislamiento y elementos de protección.</small>
+        </article>
+        <article class="sector-card">
+          <span><i class="bi bi-buildings"></i></span><h3 data-i18n="sectores.card4">Municipal</h3><small data-i18n="sectores.card4d">Parques, mobiliario y seguridad urbana.</small>
+        </article>
+        <article class="sector-card">
+          <span><i class="bi bi-mortarboard"></i></span><h3 data-i18n="sectores.card5">Educación y deporte</h3><small data-i18n="sectores.card5d">Superficies amortiguantes y antideslizantes.</small>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="section" id="como-funciona">
+  <section class="section reveal" id="como-funciona">
     <div class="container">
       <div class="section-head">
         <div class="copy">
-          <h2>De la necesidad a una propuesta concreta.</h2>
+          <h2 data-i18n="como.title">De la necesidad a una propuesta concreta.</h2>
         </div>
       </div>
 
       <div class="how">
-        <article class="how-step"><div class="step">1</div><h3>Publica tu necesidad</h3><p>Indica sector, producto, cantidad, ubicación y requisitos técnicos.</p></article>
-        <article class="how-step"><div class="step">2</div><h3>Encontramos coincidencias</h3><p>Comparamos la solicitud con productos, stock y proveedores disponibles.</p></article>
-        <article class="how-step"><div class="step">3</div><h3>Calculamos la entrega</h3><p>Estimamos distancia, consolidación, tiempo y costo de distribución.</p></article>
-        <article class="how-step"><div class="step">4</div><h3>Recibes una propuesta</h3><p>Obtienes una solución técnica, trazable y alineada con tu operación.</p></article>
+        <article class="how-step">
+          <div style="width:100%;height:100px;border-radius:14px;background:var(--brand-soft);display:grid;place-items:center;margin-bottom:12px"><i class="bi bi-pencil" style="font-size:36px;color:var(--brand)"></i></div>
+          <div class="step">1</div>
+          <h3 data-i18n="como.step1">Publica tu necesidad</h3>
+          <p data-i18n="como.step1d">Indica sector, producto, cantidad, ubicación y requisitos técnicos.</p>
+        </article>
+        <article class="how-step">
+          <div style="width:100%;height:100px;border-radius:14px;background:var(--brand-soft);display:grid;place-items:center;margin-bottom:12px"><i class="bi bi-search" style="font-size:36px;color:var(--brand)"></i></div>
+          <div class="step">2</div>
+          <h3 data-i18n="como.step2">Encontramos coincidencias</h3>
+          <p data-i18n="como.step2d">Comparamos la solicitud con productos, stock y proveedores disponibles.</p>
+        </article>
+        <article class="how-step">
+          <div style="width:100%;height:100px;border-radius:14px;background:var(--brand-soft);display:grid;place-items:center;margin-bottom:12px"><i class="bi bi-calculator" style="font-size:36px;color:var(--brand)"></i></div>
+          <div class="step">3</div>
+          <h3 data-i18n="como.step3">Calculamos la entrega</h3>
+          <p data-i18n="como.step3d">Estimamos distancia, consolidación, tiempo y costo de distribución.</p>
+        </article>
+        <article class="how-step">
+          <div style="width:100%;height:100px;border-radius:14px;background:var(--brand-soft);display:grid;place-items:center;margin-bottom:12px"><i class="bi bi-file-text" style="font-size:36px;color:var(--brand)"></i></div>
+          <div class="step">4</div>
+          <h3 data-i18n="como.step4">Recibes una propuesta</h3>
+          <p data-i18n="como.step4d">Obtienes una solución técnica, trazable y alineada con tu operación.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -648,187 +816,531 @@
   <section class="section alt" id="cotizar">
     <div class="container quote-wrap">
       <aside class="quote-info">
-        <h2 style="margin-top:16px">Cuéntanos qué necesitas.</h2>
-        <p>Completa el formulario y obtén una recomendación inmediata de producto, compatibilidad y modalidad logística.</p>
+        <h2 style="margin-top:16px" data-i18n="cotizar.title">Cuéntanos qué necesitas.</h2>
+        <p data-i18n="cotizar.subtitle">Completa el formulario y obtén una recomendación inmediata de producto, compatibilidad y modalidad logística.</p>
         <div class="quote-points">
-          <div class="quote-point"><i>✓</i><span>Orientación por sector y aplicación.</span></div>
-          <div class="quote-point"><i>✓</i><span>Estimación de compatibilidad.</span></div>
-          <div class="quote-point"><i>✓</i><span>Recomendación de distribución consolidada.</span></div>
-          <div class="quote-point"><i>✓</i><span>Registro local del contacto para la demostración.</span></div>
+          <div class="quote-point"><i class="bi bi-check-circle-fill" style="color:#fff;font-size:14px"></i><span data-i18n="cotizar.point1">Orientación por sector y aplicación.</span></div>
+          <div class="quote-point"><i class="bi bi-check-circle-fill" style="color:#fff;font-size:14px"></i><span data-i18n="cotizar.point2">Estimación de compatibilidad.</span></div>
+          <div class="quote-point"><i class="bi bi-check-circle-fill" style="color:#fff;font-size:14px"></i><span data-i18n="cotizar.point3">Recomendación de distribución consolidada.</span></div>
+          <div class="quote-point"><i class="bi bi-check-circle-fill" style="color:#fff;font-size:14px"></i><span data-i18n="cotizar.point4">Registro local del contacto para la demostración.</span></div>
         </div>
       </aside>
 
       <div class="form-card">
         <form id="quoteForm">
           <div class="form-grid">
-            <div class="field"><label>Empresa</label><input name="empresa" required placeholder="Nombre de la empresa"></div>
-            <div class="field"><label>Sector</label>
+            <div class="field"><label data-i18n="cotizar.form.company">Empresa</label><input name="empresa" required placeholder="Nombre de la empresa"></div>
+            <div class="field"><label data-i18n="cotizar.form.sector">Sector</label>
               <select name="sector" required>
-                <option value="">Seleccionar</option>
-                <option value="automotriz">Automotriz</option>
-                <option value="mineria">Minería</option>
-                <option value="construccion">Construcción</option>
-                <option value="municipal">Municipal</option>
-                <option value="deportivo">Educación / Deporte</option>
+                <option value="" data-i18n="cotizar.form.select">Seleccionar</option>
+                <option value="automotriz" data-i18n="cotizar.form.auto">Automotriz</option>
+                <option value="mineria" data-i18n="cotizar.form.min">Minería</option>
+                <option value="construccion" data-i18n="cotizar.form.const">Construcción</option>
+                <option value="municipal" data-i18n="cotizar.form.mun">Municipal</option>
+                <option value="deportivo" data-i18n="cotizar.form.dep">Educación / Deporte</option>
               </select>
             </div>
-            <div class="field"><label>Necesidad principal</label>
+            <div class="field"><label data-i18n="cotizar.form.need">Necesidad principal</label>
               <select name="necesidad" required>
-                <option value="">Seleccionar</option>
-                <option value="seguridad">Seguridad y protección</option>
-                <option value="piso">Piso o superficie amortiguante</option>
-                <option value="estacionamiento">Estacionamiento</option>
-                <option value="materia">Materia prima reciclada</option>
-                <option value="cables">Protección de cables o mangueras</option>
+                <option value="" data-i18n="cotizar.form.select">Seleccionar</option>
+                <option value="seguridad" data-i18n="cotizar.form.needs1">Seguridad y protección</option>
+                <option value="piso" data-i18n="cotizar.form.needs2">Piso o superficie amortiguante</option>
+                <option value="estacionamiento" data-i18n="cotizar.form.needs3">Estacionamiento</option>
+                <option value="materia" data-i18n="cotizar.form.needs4">Materia prima reciclada</option>
+                <option value="cables" data-i18n="cotizar.form.needs5">Protección de cables o mangueras</option>
               </select>
             </div>
-            <div class="field"><label>Cantidad aproximada</label><input name="cantidad" type="number" min="1" required placeholder="Ej. 500"></div>
-            <div class="field"><label>Ciudad de entrega</label>
+            <div class="field"><label data-i18n="cotizar.form.qty">Cantidad aproximada</label><input name="cantidad" type="number" min="1" required placeholder="Ej. 500"></div>
+            <div class="field"><label data-i18n="cotizar.form.city">Ciudad de entrega</label>
               <select name="ciudad" required>
-                <option value="">Seleccionar</option>
-                <option>Lima</option><option>Chiclayo</option><option>Huancayo</option><option>Arequipa</option><option>Otra ciudad</option>
+                <option value="" data-i18n="cotizar.form.select">Seleccionar</option>
+                <option>Lima</option><option>Chiclayo</option><option>Huancayo</option><option>Arequipa</option><option data-i18n="cotizar.form.other">Otra ciudad</option>
               </select>
             </div>
-            <div class="field"><label>Correo de contacto</label><input name="correo" type="email" required placeholder="contacto@empresa.com"></div>
-            <div class="field full"><label>Especificaciones o contexto</label><textarea name="detalle" rows="4" placeholder="Describe dimensiones, carga, uso, exposición a combustibles, ubicación u otro requisito."></textarea></div>
+            <div class="field"><label data-i18n="cotizar.form.email">Correo de contacto</label><input name="correo" type="email" required placeholder="contacto@empresa.com"></div>
+            <div class="field full"><label data-i18n="cotizar.form.specs">Especificaciones o contexto</label><textarea name="detalle" rows="4" placeholder="Describe dimensiones, carga, uso, exposición a combustibles, ubicación u otro requisito."></textarea></div>
           </div>
           <div class="form-actions">
-            <button type="reset" class="btn secondary">Limpiar</button>
-            <button class="btn primary">Encontrar solución</button>
+            <button type="reset" class="btn secondary" data-i18n="cotizar.form.clear">Limpiar</button>
+            <button class="btn primary" data-i18n="cotizar.form.submit">Encontrar solución</button>
           </div>
         </form>
 
         <div class="result-card" id="quoteResult">
-          <h3 id="resultTitle">Coincidencia encontrada</h3>
+          <h3 id="resultTitle" data-i18n="cotizar.result.title">Coincidencia encontrada</h3>
           <p class="muted" id="resultText"></p>
           <div class="result-grid">
-            <div class="result-box"><span class="muted">Compatibilidad</span><strong id="resultMatch">0%</strong></div>
-            <div class="result-box"><span class="muted">Entrega estimada</span><strong id="resultDays">0 días</strong></div>
-            <div class="result-box"><span class="muted">Modalidad</span><strong id="resultMode">—</strong></div>
-            <div class="result-box"><span class="muted">Prioridad</span><strong id="resultPriority">—</strong></div>
+            <div class="result-box"><span class="muted" data-i18n="cotizar.result.compat">Compatibilidad</span><strong id="resultMatch">0%</strong></div>
+            <div class="result-box"><span class="muted" data-i18n="cotizar.result.eta">Entrega estimada</span><strong id="resultDays">0 días</strong></div>
+            <div class="result-box"><span class="muted" data-i18n="cotizar.result.mode">Modalidad</span><strong id="resultMode">—</strong></div>
+            <div class="result-box"><span class="muted" data-i18n="cotizar.result.priority">Prioridad</span><strong id="resultPriority">—</strong></div>
           </div>
+
           <div class="proposal-print" id="proposalPrint">
-            <h4>Datos de la propuesta</h4>
-            <div class="print-row"><strong>Empresa:</strong><span id="printEmpresa"></span></div>
-            <div class="print-row"><strong>Sector:</strong><span id="printSector"></span></div>
-            <div class="print-row"><strong>Necesidad principal:</strong><span id="printNecesidad"></span></div>
-            <div class="print-row"><strong>Cantidad aproximada:</strong><span id="printCantidad"></span></div>
-            <div class="print-row"><strong>Ciudad de entrega:</strong><span id="printCiudad"></span></div>
-            <div class="print-row"><strong>Detalle:</strong><span id="printDetalle"></span></div>
-            <div class="print-row"><strong>Producto recomendado:</strong><span id="printProducto"></span></div>
-            <div class="print-row"><strong>Fecha de propuesta:</strong><span id="printCreatedAt"></span></div>
-          </div>
-          <div class="form-actions">
-            <button class="btn secondary" id="printProposal" type="button">Imprimir propuesta</button>
-            <button class="btn dark" id="saveLead" type="button">Guardar solicitud</button>
+            <h4 data-i18n="cotizar.print.title">Datos de la propuesta</h4>
+            <div class="print-row"><strong data-i18n="cotizar.print.company">Empresa:</strong><span id="printEmpresa"></span></div>
+            <div class="print-row"><strong data-i18n="cotizar.print.sector">Sector:</strong><span id="printSector"></span></div>
+            <div class="print-row"><strong data-i18n="cotizar.print.need">Necesidad principal:</strong><span id="printNecesidad"></span></div>
+            <div class="print-row"><strong data-i18n="cotizar.print.qty">Cantidad aproximada:</strong><span id="printCantidad"></span></div>
+            <div class="print-row"><strong data-i18n="cotizar.print.city">Ciudad de entrega:</strong><span id="printCiudad"></span></div>
+            <div class="print-row"><strong data-i18n="cotizar.print.detail">Detalle:</strong><span id="printDetalle"></span></div>
+            <div class="print-row"><strong data-i18n="cotizar.print.product">Producto recomendado:</strong><span id="printProducto"></span></div>
+            <div class="print-row"><strong data-i18n="cotizar.print.date">Fecha de propuesta:</strong><span id="printCreatedAt"></span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="casos">
+  <section class="section reveal" id="casos">
     <div class="container">
       <div class="section-head">
         <div class="copy">
-          <span class="eyebrow">Casos de uso</span>
-          <h2>Cómo una empresa puede aprovechar productos de NFU.</h2>
+          <span class="eyebrow" data-i18n="casos.eyebrow">Casos de uso</span>
+          <h2 data-i18n="casos.title">Cómo una empresa puede aprovechar productos de NFU.</h2>
         </div>
       </div>
 
       <div class="case-grid">
-        <article class="case-card"><div class="case-icon">⛏️</div><h3>Operación minera</h3><p>Solicita protectores de cable con resistencia a tránsito y abrasión para una zona de mantenimiento.</p><div class="case-meta"><span>Producto técnico</span><span>Alta prioridad</span></div></article>
-        <article class="case-card"><div class="case-icon">🅿️</div><h3>Red de concesionarios</h3><p>Consolida la compra de topes y protectores para varias sedes, reduciendo el costo por despacho.</p><div class="case-meta"><span>Compra recurrente</span><span>Escalable</span></div></article>
-        <article class="case-card"><div class="case-icon">🏫</div><h3>Municipalidad o colegio</h3><p>Implementa losetas amortiguantes en parques o patios con trazabilidad del material reciclado.</p><div class="case-meta"><span>Impacto visible</span><span>Valor social</span></div></article>
+        <article class="case-card"><div class="case-icon"><i class="bi bi-pick"></i></div><h3 data-i18n="casos.card1.title">Operación minera</h3><p data-i18n="casos.card1.text">Solicita protectores de cable con resistencia a tránsito y abrasión para una zona de mantenimiento.</p><div class="case-meta"><span data-i18n="casos.card1.tag1">Producto técnico</span><span data-i18n="casos.card1.tag2">Alta prioridad</span></div></article>
+        <article class="case-card"><div class="case-icon"><i class="bi bi-p-circle"></i></div><h3 data-i18n="casos.card2.title">Red de concesionarios</h3><p data-i18n="casos.card2.text">Consolida la compra de topes y protectores para varias sedes, reduciendo el costo por despacho.</p><div class="case-meta"><span data-i18n="casos.card2.tag1">Compra recurrente</span><span data-i18n="casos.card2.tag2">Escalable</span></div></article>
+        <article class="case-card"><div class="case-icon"><i class="bi bi-mortarboard"></i></div><h3 data-i18n="casos.card3.title">Municipalidad o colegio</h3><p data-i18n="casos.card3.text">Implementa losetas amortiguantes en parques o patios con trazabilidad del material reciclado.</p><div class="case-meta"><span data-i18n="casos.card3.tag1">Impacto visible</span><span data-i18n="casos.card3.tag2">Valor social</span></div></article>
       </div>
     </div>
   </section>
 
-  <section class="section alt" id="impacto">
+  <section class="section alt reveal" id="impacto">
     <div class="container">
       <div class="section-head">
         <div class="copy">
-          <span class="eyebrow">Impacto estimado</span>
-          <h2>Calcula el valor circular de tu compra.</h2>
-          <p class="lead">Simulación referencial para la presentación de la hackathon.</p>
+          <span class="eyebrow" data-i18n="impacto.eyebrow">Impacto estimado</span>
+          <h2 data-i18n="impacto.title">Calcula el valor circular de tu compra.</h2>
+          <p class="lead" data-i18n="impacto.subtitle">Simulación referencial para la presentación de la hackathon.</p>
         </div>
       </div>
 
       <div class="impact-box">
         <div class="impact-controls">
           <div class="field">
-            <label>Toneladas de material reciclado que utilizarías</label>
+            <label data-i18n="impacto.label">Toneladas de material reciclado que utilizarías</label>
             <input id="impactTons" type="range" min="1" max="100" value="10">
-            <span class="muted"><strong id="impactTonsLabel">10</strong> toneladas</span>
+            <span class="muted"><strong id="impactTonsLabel">10</strong> <span data-i18n="impacto.tons">toneladas</span></span>
           </div>
-          <button class="btn primary" id="calcImpact">Calcular impacto</button>
+          <button class="btn primary" id="calcImpact" data-i18n="impacto.btn">Calcular impacto</button>
         </div>
         <div class="impact-result">
-          <div class="impact-card"><span class="muted">NFU aprovechados</span><strong id="impactTires">500</strong><small>equivalencia referencial</small></div>
-          <div class="impact-card"><span class="muted">Material reinsertado</span><strong id="impactMaterial">10 t</strong><small>en nuevos usos productivos</small></div>
-          <div class="impact-card"><span class="muted">Despachos consolidados</span><strong id="impactTrips">2</strong><small>en lugar de viajes separados</small></div>
+          <div class="impact-card"><span class="muted" data-i18n="impacto.card1">NFU aprovechados</span><strong id="impactTires">500</strong><small data-i18n="impacto.card1d">equivalencia referencial</small></div>
+          <div class="impact-card"><span class="muted" data-i18n="impacto.card2">Material reinsertado</span><strong id="impactMaterial">10 t</strong><small data-i18n="impacto.card2d">en nuevos usos productivos</small></div>
+          <div class="impact-card"><span class="muted" data-i18n="impacto.card3">Despachos consolidados</span><strong id="impactTrips">2</strong><small data-i18n="impacto.card3d">en lugar de viajes separados</small></div>
+        </div>
+
+        <div class="chart-wrap" id="chartWrap">
+          <canvas id="impactChart"></canvas>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="faq">
+  <section class="section reveal" id="faq">
     <div class="container">
       <div class="section-head">
         <div class="copy">
-          <span class="eyebrow">Preguntas frecuentes</span>
-          <h2>Lo esencial antes de comprar.</h2>
+          <span class="eyebrow" data-i18n="faq.eyebrow">Preguntas frecuentes</span>
+          <h2 data-i18n="faq.title">Lo esencial antes de comprar.</h2>
         </div>
       </div>
 
       <div class="faq">
-        <div class="faq-item"><button class="faq-q">¿REVO fabrica directamente todos los productos?<span>+</span></button><div class="faq-a">La propuesta plantea que REVO articule plantas valorizadoras, fabricantes asociados, compradores y transportistas. La fabricación puede realizarse mediante aliados especializados.</div></div>
-        <div class="faq-item"><button class="faq-q">¿Los productos cuentan con especificaciones técnicas?<span>+</span></button><div class="faq-a">Cada producto debe incorporar ficha técnica, aplicación recomendada, dimensiones, controles de calidad y trazabilidad. Las aplicaciones de minería requieren validación adicional.</div></div>
-        <div class="faq-item"><button class="faq-q">¿Cómo se reduce el costo de distribución?<span>+</span></button><div class="faq-a">La plataforma agrupa pedidos por ciudad o corredor logístico y prioriza despachos consolidados o rutas de retorno.</div></div>
-        <div class="faq-item"><button class="faq-q">¿La cotización generada es definitiva?<span>+</span></button><div class="faq-a">No. En este prototipo es una simulación para la hackathon. Una operación real requiere validar stock, proveedor, pruebas técnicas, precio y transporte.</div></div>
+        <div class="faq-item"><button class="faq-q" data-i18n="faq.q1"><span>¿REVO fabrica directamente todos los productos?</span><span>+</span></button><div class="faq-a" data-i18n="faq.a1">La propuesta plantea que REVO articule plantas valorizadoras, fabricantes asociados, compradores y transportistas. La fabricación puede realizarse mediante aliados especializados.</div></div>
+        <div class="faq-item"><button class="faq-q" data-i18n="faq.q2"><span>¿Los productos cuentan con especificaciones técnicas?</span><span>+</span></button><div class="faq-a" data-i18n="faq.a2">Cada producto debe incorporar ficha técnica, aplicación recomendada, dimensiones, controles de calidad y trazabilidad. Las aplicaciones de minería requieren validación adicional.</div></div>
+        <div class="faq-item"><button class="faq-q" data-i18n="faq.q3"><span>¿Cómo se reduce el costo de distribución?</span><span>+</span></button><div class="faq-a" data-i18n="faq.a3">La plataforma agrupa pedidos por ciudad o corredor logístico y prioriza despachos consolidados o rutas de retorno.</div></div>
+        <div class="faq-item"><button class="faq-q" data-i18n="faq.q4"><span>¿La cotización generada es definitiva?</span><span>+</span></button><div class="faq-a" data-i18n="faq.a4">No. En este prototipo es una simulación para la hackathon. Una operación real requiere validar stock, proveedor, pruebas técnicas, precio y transporte.</div></div>
       </div>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section reveal">
     <div class="container cta">
       <div>
-        <h2>Convierte una necesidad empresarial en una oportunidad circular.</h2>
-        <p>Encuentra productos derivados de NFU, solicita una propuesta y ayuda a cerrar el ciclo del reciclaje.</p>
+        <h2 data-i18n="cta.title">Convierte una necesidad empresarial en una oportunidad circular.</h2>
+        <p data-i18n="cta.text">Encuentra productos derivados de NFU, solicita una propuesta y ayuda a cerrar el ciclo del reciclaje.</p>
       </div>
-      <a class="btn primary" href="#cotizar">Solicitar propuesta</a>
+      <a class="btn primary" href="#cotizar" data-i18n="cta.btn">Solicitar propuesta</a>
     </div>
   </section>
 </main>
 
 <footer>
   <div class="container footer-grid">
-    <div class="logo"><span class="logo-mark">R</span><span>REVO Match Circular<small>Prototipo comercial para hackathon</small></span></div>
-    <div class="footer-links"><a href="#productos">Productos</a><a href="#cotizar">Cotizar</a><a href="#faq">Preguntas</a></div>
+    <div class="logo"><span class="logo-mark">R</span><span>REVO Match Circular<small data-i18n="footer.tagline">Prototipo comercial para hackathon</small></span></div>
+    <div class="footer-links">
+      <a href="#productos" data-i18n="footer.products">Productos</a>
+      <a href="#cotizar" data-i18n="footer.quote">Cotizar</a>
+      <a href="#faq" data-i18n="footer.faq">Preguntas</a>
+      <span class="lead-count" id="leadsCount" title="Ver solicitudes guardadas"><i class="bi bi-clipboard-data"></i> 0</span>
+    </div>
   </div>
 </footer>
 
 <div class="modal" id="productModal">
   <div class="modal-card">
     <div class="modal-head">
-      <div><span class="eyebrow">Ficha de producto</span><h3 id="modalProductTitle" style="margin-top:12px">Producto</h3></div>
-      <button class="icon-btn" id="closeProductModal">×</button>
+      <div><span class="eyebrow" data-i18n="modal.eyebrow">Ficha de producto</span><h3 id="modalProductTitle" style="margin-top:12px">Producto</h3></div>
+      <button class="icon-btn" id="closeProductModal"><i class="bi bi-x-lg"></i></button>
     </div>
     <div id="modalProductBody"></div>
     <div class="form-actions">
-      <button class="btn secondary" id="closeProductModal2">Cerrar</button>
-      <a href="#cotizar" class="btn primary" id="modalQuoteBtn">Solicitar cotización</a>
+      <button class="btn secondary" id="closeProductModal2" data-i18n="modal.close">Cerrar</button>
+      <a href="#cotizar" class="btn primary" id="modalQuoteBtn" data-i18n="modal.quote">Solicitar cotización</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="leadsModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div><span class="eyebrow" data-i18n="leads.eyebrow">Dashboard</span><h3 style="margin-top:12px" data-i18n="leads.title">Solicitudes guardadas</h3></div>
+      <button class="icon-btn" id="closeLeadsModal"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div id="leadsBody">
+      <div class="lead-empty" data-i18n="leads.empty">No hay solicitudes guardadas aún.</div>
+    </div>
+    <div class="form-actions">
+      <button class="btn secondary" id="closeLeadsModal2" data-i18n="modal.close">Cerrar</button>
+      <button class="btn dark" id="clearLeads" data-i18n="leads.clear">Limpiar todo</button>
+    </div>
+  </div>
+</div>
+
+<div id="proposalTemplate" style="display:none">
+  <div id="proposalContent" style="padding:48px 40px;font-family:Inter,system-ui,sans-serif;max-width:800px;margin:auto;background:#fff;color:#16231d">
+    <div style="text-align:center;margin-bottom:32px;border-bottom:3px solid #168a58;padding-bottom:24px">
+      <div style="font-size:48px;font-weight:900;color:#168a58;letter-spacing:-.04em">R</div>
+      <h1 style="font-size:28px;color:#16231d;margin:8px 0 0">REVO Match Circular</h1>
+      <p style="color:#65736c;font-size:14px;margin:4px 0 0" id="propLangSubtitle">Propuesta de solución comercial</p>
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:14px">
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0;font-weight:700;width:180px;color:#0d5e3c" id="propLabelCompany">Empresa</td><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0" id="propCompany">—</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0;font-weight:700;color:#0d5e3c" id="propLabelSector">Sector</td><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0" id="propSector">—</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0;font-weight:700;color:#0d5e3c" id="propLabelNeed">Necesidad principal</td><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0" id="propNeed">—</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0;font-weight:700;color:#0d5e3c" id="propLabelQty">Cantidad aproximada</td><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0" id="propQty">—</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0;font-weight:700;color:#0d5e3c" id="propLabelCity">Ciudad de entrega</td><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0" id="propCity">—</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0;font-weight:700;color:#0d5e3c" id="propLabelEmail">Correo de contacto</td><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0" id="propEmail">—</td></tr>
+      <tr><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0;font-weight:700;color:#0d5e3c" id="propLabelSpecs">Especificaciones</td><td style="padding:10px 12px;border-bottom:1px solid #dbe7e0" id="propSpecs">—</td></tr>
+    </table>
+    <div style="margin-top:32px;padding:24px;background:#e7f6ef;border-radius:16px;border:1px solid #bfe5cf">
+      <h2 style="font-size:20px;color:#0d5e3c;margin:0 0 16px" id="propLabelSolution">Solución recomendada</h2>
+      <p style="font-size:18px;font-weight:800;color:#168a58;margin:0 0 16px" id="propProduct">—</p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="padding:14px;background:#fff;border-radius:12px;text-align:center">
+          <div style="font-size:11px;color:#65736c;font-weight:700" id="propLabelCompat">Compatibilidad</div>
+          <div style="font-size:22px;font-weight:900;color:#168a58;margin-top:4px" id="propMatch">0%</div>
+        </div>
+        <div style="padding:14px;background:#fff;border-radius:12px;text-align:center">
+          <div style="font-size:11px;color:#65736c;font-weight:700" id="propLabelDelivery">Entrega estimada</div>
+          <div style="font-size:22px;font-weight:900;color:#168a58;margin-top:4px" id="propDays">0 días</div>
+        </div>
+        <div style="padding:14px;background:#fff;border-radius:12px;text-align:center">
+          <div style="font-size:11px;color:#65736c;font-weight:700" id="propLabelMode">Modalidad</div>
+          <div style="font-size:22px;font-weight:900;color:#168a58;margin-top:4px" id="propMode">—</div>
+        </div>
+        <div style="padding:14px;background:#fff;border-radius:12px;text-align:center">
+          <div style="font-size:11px;color:#65736c;font-weight:700" id="propLabelPriority">Prioridad</div>
+          <div style="font-size:22px;font-weight:900;color:#168a58;margin-top:4px" id="propPriority">—</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:32px;text-align:center;color:#65736c;font-size:12px;border-top:1px solid #dbe7e0;padding-top:16px">
+      <span id="propLabelGenerated">Generado el</span> <span id="propDate">—</span>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
 <script>
+  // ===== TRANSLATIONS =====
+  const i18n = {
+    "page.title": { es: "REVO Match Circular | Productos de NFU para empresas", en: "REVO Match Circular | NFU Products for Companies" },
+    "header.tagline": { es: "Del neumático valorizado al cliente correcto", en: "From valued tire to the right customer" },
+    "nav.solution": { es: "Solución", en: "Solution" },
+    "nav.products": { es: "Productos", en: "Products" },
+    "nav.sectors": { es: "Sectores", en: "Sectors" },
+    "nav.how": { es: "Cómo funciona", en: "How it works" },
+    "nav.quote": { es: "Cotizar", en: "Quote" },
+    "nav.cta": { es: "Encontrar una solución", en: "Find a solution" },
+    "hero.eyebrow": { es: "Economía circular aplicada al mercado", en: "Circular economy applied to the market" },
+    "hero.title": { es: "Productos reciclados de NFU que sí llegan al cliente correcto.", en: "Recycled NFU products that actually reach the right customer." },
+    "hero.subtitle": { es: "Conectamos caucho granulado y productos derivados de neumáticos fuera de uso con empresas que buscan soluciones técnicas, sostenibles y trazables.", en: "We connect granulated rubber and end-of-life tire products with companies seeking technical, sustainable, and traceable solutions." },
+    "hero.cta1": { es: "Solicitar una propuesta", en: "Request a proposal" },
+    "hero.cta2": { es: "Explorar productos", en: "Explore products" },
+    "hero.trust1": { es: "Oferta validada", en: "Validated offer" },
+    "hero.trust2": { es: "Trazabilidad del material", en: "Material traceability" },
+    "hero.trust3": { es: "Distribución consolidada", en: "Consolidated distribution" },
+    "hero.orbit.label": { es: "de residuo a solución comercial", en: "from waste to commercial solution" },
+    "hero.orbit.o1": { es: "Valorización", en: "Recovery" },
+    "hero.orbit.o1d": { es: "Material disponible", en: "Available material" },
+    "hero.orbit.o2": { es: "Matching", en: "Matching" },
+    "hero.orbit.o2d": { es: "Cliente compatible", en: "Compatible client" },
+    "hero.orbit.o3": { es: "Distribución", en: "Distribution" },
+    "hero.orbit.o3d": { es: "Ruta sostenible", en: "Sustainable route" },
+    "hero.orbit.o4": { es: "Impacto", en: "Impact" },
+    "hero.orbit.o4d": { es: "Circularidad medible", en: "Measurable circularity" },
+    "hero.orbit.o5": { es: "Producto", en: "Product" },
+    "hero.orbit.o5d": { es: "Solución técnica", en: "Technical solution" },
+    "hero.stat1": { es: "familias de productos circulares", en: "circular product families" },
+    "hero.stat2": { es: "sectores empresariales priorizados", en: "prioritized business sectors" },
+    "hero.stat3": { es: "enfoque comercial directo", en: "direct B2B approach" },
+    "hero.stat4": { es: "trazabilidad demostrable por lote", en: "demonstrable batch traceability" },
+    "problema.eyebrow": { es: "como nace Revo", en: "how Revo was born" },
+    "problema.title": { es: "Una propuesta diseñada para visibilizar productos circulares y conectar oferta con demanda.", en: "A proposal designed to make circular products visible and connect supply with demand." },
+    "problema.subtitle": { es: "Esta página nace para demostrar cómo el caucho reciclado puede convertirse en soluciones comerciales claras, trazables y útiles para empresas.", en: "This page exists to demonstrate how recycled rubber can become clear, traceable, and useful commercial solutions for companies." },
+    "problema.card1.title": { es: "PROPÓSITO", en: "PURPOSE" },
+    "problema.card1.heading": { es: "Buscamos demostrar que los productos derivados de Neumáticos", en: "We aim to demonstrate that tire-derived products" },
+    "problema.card1.text": { es: "Queremos explicar por qué los productos derivados de neumáticos fuera de uso son una alternativa viable y sostenible para el mercado. NFU", en: "We want to explain why end-of-life tire products are a viable and sustainable alternative for the market." },
+    "problema.card2.title": { es: "MOTIVO", en: "MOTIVE" },
+    "problema.card2.heading": { es: "Apostamos por esta propuesta comercial que facilita la reconversión", en: "We bet on this commercial proposal that facilitates reconversion" },
+    "problema.card2.text": { es: "La página fue creada para apoyar una propuesta comercial que facilite la reconversión de residuo en insumo para empresas.", en: "The page was created to support a commercial proposal that facilitates the conversion of waste into input for companies." },
+    "problema.card3.title": { es: "VISIÓN", en: "VISION" },
+    "problema.card3.heading": { es: "Vincular oferta y demanda", en: "Connect supply and demand" },
+    "problema.card3.text": { es: "El objetivo es conectar necesidades reales del cliente con productos reciclados, dejando atrás la idea de que reciclar basta por sí solo.", en: "The goal is to connect real customer needs with recycled products, moving past the idea that recycling alone is enough." },
+    "solucion.eyebrow": { es: "La solución", en: "The solution" },
+    "solucion.text": { es: "Una plataforma comercial que muestra productos derivados de NFU, identifica compradores compatibles y organiza una entrega sostenible.", en: "A commercial platform that showcases NFU-derived products, identifies compatible buyers, and organizes sustainable delivery." },
+    "solucion.cta": { es: "Publicar una necesidad", en: "Post a need" },
+    "solucion.feat1.title": { es: "Catálogo B2B", en: "B2B Catalog" },
+    "solucion.feat1.text": { es: "Productos con aplicaciones, disponibilidad, ubicación y ficha técnica.", en: "Products with applications, availability, location, and technical specs." },
+    "solucion.feat2.title": { es: "Matching comercial", en: "Commercial Matching" },
+    "solucion.feat2.text": { es: "La necesidad del cliente se vincula con el producto más compatible.", en: "The customer's need is linked to the most compatible product." },
+    "solucion.feat3.title": { es: "Pedidos consolidados", en: "Consolidated Orders" },
+    "solucion.feat3.text": { es: "Agrupamos entregas para reducir costos y viajes innecesarios.", en: "We group deliveries to reduce costs and unnecessary trips." },
+    "solucion.feat4.title": { es: "Trazabilidad", en: "Traceability" },
+    "solucion.feat4.text": { es: "Cada lote puede mostrar origen, proceso de valorización y destino.", en: "Each batch can show origin, recovery process, and destination." },
+    "productos.eyebrow": { es: "Soluciones disponibles", en: "Available solutions" },
+    "productos.title": { es: "Productos que resuelven necesidades reales.", en: "Products that solve real needs." },
+    "productos.subtitle": { es: "Filtra por sector y descubre aplicaciones comerciales del caucho reciclado.", en: "Filter by sector and discover commercial applications of recycled rubber." },
+    "productos.filterAll": { es: "Todos", en: "All" },
+    "productos.filterAuto": { es: "Automotriz", en: "Automotive" },
+    "productos.filterMin": { es: "Minería", en: "Mining" },
+    "productos.filterConst": { es: "Construcción", en: "Construction" },
+    "productos.filterMun": { es: "Municipal", en: "Municipal" },
+    "productos.filterDep": { es: "Deportivo", en: "Sports" },
+    "productos.name1": { es: "Topes de estacionamiento", en: "Parking bumpers" },
+    "productos.name2": { es: "Protectores para cables", en: "Cable protectors" },
+    "productos.name3": { es: "Losetas amortiguantes", en: "Cushioning tiles" },
+    "productos.name4": { es: "Cuñas para vehículos", en: "Vehicle chocks" },
+    "productos.name5": { es: "Pisos de caucho", en: "Rubber flooring" },
+    "productos.name6": { es: "Caucho granulado", en: "Granulated rubber" },
+    "productos.desc1": { es: "Solución resistente para concesionarios, estacionamientos, centros comerciales y almacenes.", en: "Durable solution for dealerships, parking lots, malls, and warehouses." },
+    "productos.desc2": { es: "Protección de tendidos eléctricos y mangueras en zonas de tránsito de equipos móviles.", en: "Protection for electrical lines and hoses in mobile equipment transit areas." },
+    "productos.desc3": { es: "Superficies para parques infantiles, gimnasios, patios escolares y áreas deportivas.", en: "Surfaces for playgrounds, gyms, schoolyards, and sports areas." },
+    "productos.desc4": { es: "Elemento de seguridad para vehículos pesados, talleres y zonas de mantenimiento.", en: "Safety element for heavy vehicles, workshops, and maintenance areas." },
+    "productos.desc5": { es: "Superficie antideslizante y amortiguante para talleres, gimnasios y áreas técnicas.", en: "Non-slip, cushioned surface for workshops, gyms, and technical areas." },
+    "productos.desc6": { es: "Materia prima para fabricantes de pisos, protectores, elementos urbanos y soluciones técnicas.", en: "Raw material for manufacturers of floors, protectors, urban elements, and technical solutions." },
+    "productos.benefit1": { es: "Beneficio: protege pavimentos y mejora la seguridad del flujo vehicular con una instalación rápida y duradera.", en: "Benefit: protects pavement and improves vehicle flow safety with quick, durable installation." },
+    "productos.benefit2": { es: "Beneficio: reduce riesgos de corte y abrasión, alargando la vida útil de instalaciones críticas en ambientes agresivos.", en: "Benefit: reduces cut and abrasion risks, extending the life of critical installations in harsh environments." },
+    "productos.benefit3": { es: "Beneficio: reduce impactos y lesiones mientras ofrece una alternativa estética y durable para espacios públicos y deportivos.", en: "Benefit: reduces impacts and injuries while offering an aesthetic, durable alternative for public and sports spaces." },
+    "productos.benefit4": { es: "Beneficio: evita desplazamientos no deseados y aporta una solución económica para operaciones de carga y estacionamiento.", en: "Benefit: prevents unwanted movement and provides an economical solution for loading and parking operations." },
+    "productos.benefit5": { es: "Beneficio: aporta mayor confort, reduce el ruido y protege al personal frente a impactos de equipos y herramientas.", en: "Benefit: provides greater comfort, reduces noise, and protects personnel from equipment and tool impacts." },
+    "productos.benefit6": { es: "Beneficio: ofrece una alternativa reciclada flexible para producción en masa, apoyando la trazabilidad y el uso responsable del residuo.", en: "Benefit: offers a flexible recycled alternative for mass production, supporting traceability and responsible waste use." },
+    "productos.match1": { es: "Alta viabilidad comercial", en: "High commercial viability" },
+    "productos.match2": { es: "Producto de alto valor", en: "High-value product" },
+    "productos.match3": { es: "Aplicación visible y escalable", en: "Visible, scalable application" },
+    "productos.match4": { es: "Requiere validación de carga", en: "Requires load validation" },
+    "productos.match5": { es: "Demanda recurrente", en: "Recurring demand" },
+    "productos.match6": { es: "Venta por volumen", en: "Volume sales" },
+    "productos.detailBtn": { es: "Ver ficha", en: "View sheet" },
+    "productos.tag1a": { es: "Automotriz", en: "Automotive" },
+    "productos.tag1b": { es: "Estacionamientos", en: "Parking" },
+    "productos.tag2a": { es: "Minería", en: "Mining" },
+    "productos.tag2b": { es: "Industria", en: "Industry" },
+    "productos.tag3a": { es: "Municipal", en: "Municipal" },
+    "productos.tag3b": { es: "Deportivo", en: "Sports" },
+    "productos.tag4a": { es: "Minería", en: "Mining" },
+    "productos.tag4b": { es: "Transporte", en: "Transport" },
+    "productos.tag5a": { es: "Talleres", en: "Workshops" },
+    "productos.tag5b": { es: "Gimnasios", en: "Gyms" },
+    "productos.tag6a": { es: "Materia prima", en: "Raw material" },
+    "productos.tag6b": { es: "Fabricantes", en: "Manufacturers" },
+    "sectores.eyebrow": { es: "Mercados objetivo", en: "Target markets" },
+    "sectores.title": { es: "Una solución circular para cada sector.", en: "A circular solution for every sector." },
+    "sectores.card1": { es: "Automotriz", en: "Automotive" },
+    "sectores.card1d": { es: "Talleres, concesionarios y estacionamientos.", en: "Workshops, dealerships, and parking lots." },
+    "sectores.card2": { es: "Minería", en: "Mining" },
+    "sectores.card2d": { es: "Protección, seguridad y operación industrial.", en: "Protection, safety, and industrial operations." },
+    "sectores.card3": { es: "Construcción", en: "Construction" },
+    "sectores.card3d": { es: "Pisos, aislamiento y elementos de protección.", en: "Floors, insulation, and protection elements." },
+    "sectores.card4": { es: "Municipal", en: "Municipal" },
+    "sectores.card4d": { es: "Parques, mobiliario y seguridad urbana.", en: "Parks, furniture, and urban safety." },
+    "sectores.card5": { es: "Educación y deporte", en: "Education & sports" },
+    "sectores.card5d": { es: "Superficies amortiguantes y antideslizantes.", en: "Cushioning and non-slip surfaces." },
+    "como.title": { es: "De la necesidad a una propuesta concreta.", en: "From need to a concrete proposal." },
+    "como.step1": { es: "Publica tu necesidad", en: "Post your need" },
+    "como.step1d": { es: "Indica sector, producto, cantidad, ubicación y requisitos técnicos.", en: "Specify sector, product, quantity, location, and technical requirements." },
+    "como.step2": { es: "Encontramos coincidencias", en: "We find matches" },
+    "como.step2d": { es: "Comparamos la solicitud con productos, stock y proveedores disponibles.", en: "We compare the request with available products, stock, and suppliers." },
+    "como.step3": { es: "Calculamos la entrega", en: "We calculate delivery" },
+    "como.step3d": { es: "Estimamos distancia, consolidación, tiempo y costo de distribución.", en: "We estimate distance, consolidation, time, and distribution cost." },
+    "como.step4": { es: "Recibes una propuesta", en: "You receive a proposal" },
+    "como.step4d": { es: "Obtienes una solución técnica, trazable y alineada con tu operación.", en: "You get a technical, traceable solution aligned with your operation." },
+    "cotizar.title": { es: "Cuéntanos qué necesitas.", en: "Tell us what you need." },
+    "cotizar.subtitle": { es: "Completa el formulario y obtén una recomendación inmediata de producto, compatibilidad y modalidad logística.", en: "Fill out the form and get an immediate product recommendation, compatibility, and logistics modality." },
+    "cotizar.point1": { es: "Orientación por sector y aplicación.", en: "Guidance by sector and application." },
+    "cotizar.point2": { es: "Estimación de compatibilidad.", en: "Compatibility estimation." },
+    "cotizar.point3": { es: "Recomendación de distribución consolidada.", en: "Consolidated distribution recommendation." },
+    "cotizar.point4": { es: "Registro local del contacto para la demostración.", en: "Local contact registration for the demo." },
+    "cotizar.form.company": { es: "Empresa", en: "Company" },
+    "cotizar.form.sector": { es: "Sector", en: "Sector" },
+    "cotizar.form.need": { es: "Necesidad principal", en: "Main need" },
+    "cotizar.form.qty": { es: "Cantidad aproximada", en: "Approximate quantity" },
+    "cotizar.form.city": { es: "Ciudad de entrega", en: "Delivery city" },
+    "cotizar.form.email": { es: "Correo de contacto", en: "Contact email" },
+    "cotizar.form.specs": { es: "Especificaciones o contexto", en: "Specifications or context" },
+    "cotizar.form.select": { es: "Seleccionar", en: "Select" },
+    "cotizar.form.auto": { es: "Automotriz", en: "Automotive" },
+    "cotizar.form.min": { es: "Minería", en: "Mining" },
+    "cotizar.form.const": { es: "Construcción", en: "Construction" },
+    "cotizar.form.mun": { es: "Municipal", en: "Municipal" },
+    "cotizar.form.dep": { es: "Educación / Deporte", en: "Education / Sports" },
+    "cotizar.form.needs1": { es: "Seguridad y protección", en: "Safety and protection" },
+    "cotizar.form.needs2": { es: "Piso o superficie amortiguante", en: "Floor or cushioned surface" },
+    "cotizar.form.needs3": { es: "Estacionamiento", en: "Parking" },
+    "cotizar.form.needs4": { es: "Materia prima reciclada", en: "Recycled raw material" },
+    "cotizar.form.needs5": { es: "Protección de cables o mangueras", en: "Cable or hose protection" },
+    "cotizar.form.other": { es: "Otra ciudad", en: "Other city" },
+    "cotizar.form.clear": { es: "Limpiar", en: "Clear" },
+    "cotizar.form.submit": { es: "Encontrar solución", en: "Find solution" },
+    "cotizar.result.title": { es: "Coincidencia encontrada", en: "Match found" },
+    "cotizar.result.compat": { es: "Compatibilidad", en: "Compatibility" },
+    "cotizar.result.eta": { es: "Entrega estimada", en: "Estimated delivery" },
+    "cotizar.result.mode": { es: "Modalidad", en: "Modality" },
+    "cotizar.result.priority": { es: "Prioridad", en: "Priority" },
+    "cotizar.print.title": { es: "Datos de la propuesta", en: "Proposal data" },
+    "cotizar.print.company": { es: "Empresa:", en: "Company:" },
+    "cotizar.print.sector": { es: "Sector:", en: "Sector:" },
+    "cotizar.print.need": { es: "Necesidad principal:", en: "Main need:" },
+    "cotizar.print.qty": { es: "Cantidad aproximada:", en: "Approximate quantity:" },
+    "cotizar.print.city": { es: "Ciudad de entrega:", en: "Delivery city:" },
+    "cotizar.print.detail": { es: "Detalle:", en: "Detail:" },
+    "cotizar.print.product": { es: "Producto recomendado:", en: "Recommended product:" },
+    "cotizar.print.date": { es: "Fecha de propuesta:", en: "Proposal date:" },
+    "cotizar.print.btn": { es: "Imprimir propuesta", en: "Print proposal" },
+    "cotizar.pdf.btn": { es: "Descargar PDF", en: "Download PDF" },
+    "cotizar.save": { es: "Guardar solicitud", en: "Save request" },
+    "casos.eyebrow": { es: "Casos de uso", en: "Use cases" },
+    "casos.title": { es: "Cómo una empresa puede aprovechar productos de NFU.", en: "How a company can leverage NFU products." },
+    "casos.card1.title": { es: "Operación minera", en: "Mining operation" },
+    "casos.card1.text": { es: "Solicita protectores de cable con resistencia a tránsito y abrasión para una zona de mantenimiento.", en: "Requests cable protectors with traffic and abrasion resistance for a maintenance area." },
+    "casos.card1.tag1": { es: "Producto técnico", en: "Technical product" },
+    "casos.card1.tag2": { es: "Alta prioridad", en: "High priority" },
+    "casos.card2.title": { es: "Red de concesionarios", en: "Dealership network" },
+    "casos.card2.text": { es: "Consolida la compra de topes y protectores para varias sedes, reduciendo el costo por despacho.", en: "Consolidates the purchase of bumpers and protectors for multiple locations, reducing dispatch cost." },
+    "casos.card2.tag1": { es: "Compra recurrente", en: "Recurring purchase" },
+    "casos.card2.tag2": { es: "Escalable", en: "Scalable" },
+    "casos.card3.title": { es: "Municipalidad o colegio", en: "Municipality or school" },
+    "casos.card3.text": { es: "Implementa losetas amortiguantes en parques o patios con trazabilidad del material reciclado.", en: "Implements cushioning tiles in parks or playgrounds with recycled material traceability." },
+    "casos.card3.tag1": { es: "Impacto visible", en: "Visible impact" },
+    "casos.card3.tag2": { es: "Valor social", en: "Social value" },
+    "impacto.eyebrow": { es: "Impacto estimado", en: "Estimated impact" },
+    "impacto.title": { es: "Calcula el valor circular de tu compra.", en: "Calculate the circular value of your purchase." },
+    "impacto.subtitle": { es: "Simulación referencial para la presentación de la hackathon.", en: "Reference simulation for the hackathon presentation." },
+    "impacto.label": { es: "Toneladas de material reciclado que utilizarías", en: "Tons of recycled material you would use" },
+    "impacto.tons": { es: "toneladas", en: "tons" },
+    "impacto.btn": { es: "Calcular impacto", en: "Calculate impact" },
+    "impacto.card1": { es: "NFU aprovechados", en: "NFU reused" },
+    "impacto.card1d": { es: "equivalencia referencial", en: "reference equivalence" },
+    "impacto.card2": { es: "Material reinsertado", en: "Material reinserted" },
+    "impacto.card2d": { es: "en nuevos usos productivos", en: "in new productive uses" },
+    "impacto.card3": { es: "Despachos consolidados", en: "Consolidated shipments" },
+    "impacto.card3d": { es: "en lugar de viajes separados", en: "instead of separate trips" },
+    "faq.eyebrow": { es: "Preguntas frecuentes", en: "Frequently asked questions" },
+    "faq.title": { es: "Lo esencial antes de comprar.", en: "The essentials before buying." },
+    "faq.q1": { es: "¿REVO fabrica directamente todos los productos?", en: "Does REVO directly manufacture all products?" },
+    "faq.a1": { es: "La propuesta plantea que REVO articule plantas valorizadoras, fabricantes asociados, compradores y transportistas. La fabricación puede realizarse mediante aliados especializados.", en: "The proposal suggests that REVO articulates recovery plants, associated manufacturers, buyers, and transporters. Manufacturing can be done through specialized partners." },
+    "faq.q2": { es: "¿Los productos cuentan con especificaciones técnicas?", en: "Do the products have technical specifications?" },
+    "faq.a2": { es: "Cada producto debe incorporar ficha técnica, aplicación recomendada, dimensiones, controles de calidad y trazabilidad. Las aplicaciones de minería requieren validación adicional.", en: "Each product must include a technical datasheet, recommended application, dimensions, quality controls, and traceability. Mining applications require additional validation." },
+    "faq.q3": { es: "¿Cómo se reduce el costo de distribución?", en: "How is distribution cost reduced?" },
+    "faq.a3": { es: "La plataforma agrupa pedidos por ciudad o corredor logístico y prioriza despachos consolidados o rutas de retorno.", en: "The platform groups orders by city or logistics corridor and prioritizes consolidated dispatches or return routes." },
+    "faq.q4": { es: "¿La cotización generada es definitiva?", en: "Is the generated quote final?" },
+    "faq.a4": { es: "No. En este prototipo es una simulación para la hackathon. Una operación real requiere validar stock, proveedor, pruebas técnicas, precio y transporte.", en: "No. In this prototype it's a simulation for the hackathon. A real operation requires validating stock, supplier, technical tests, price, and transportation." },
+    "cta.title": { es: "Convierte una necesidad empresarial en una oportunidad circular.", en: "Turn a business need into a circular opportunity." },
+    "cta.text": { es: "Encuentra productos derivados de NFU, solicita una propuesta y ayuda a cerrar el ciclo del reciclaje.", en: "Find NFU-derived products, request a proposal, and help close the recycling loop." },
+    "cta.btn": { es: "Solicitar propuesta", en: "Request proposal" },
+    "footer.tagline": { es: "Prototipo comercial para hackathon", en: "Commercial prototype for hackathon" },
+    "footer.products": { es: "Productos", en: "Products" },
+    "footer.quote": { es: "Cotizar", en: "Quote" },
+    "footer.faq": { es: "Preguntas", en: "FAQ" },
+    "modal.eyebrow": { es: "Ficha de producto", en: "Product sheet" },
+    "modal.close": { es: "Cerrar", en: "Close" },
+    "modal.quote": { es: "Solicitar cotización", en: "Request quote" },
+    "leads.eyebrow": { es: "Dashboard", en: "Dashboard" },
+    "leads.title": { es: "Solicitudes guardadas", en: "Saved requests" },
+    "leads.empty": { es: "No hay solicitudes guardadas aún.", en: "No saved requests yet." },
+    "leads.clear": { es: "Limpiar todo", en: "Clear all" }
+  };
+
+  let currentLang = localStorage.getItem("revo_lang") || "es";
+
+  function translatePage(lang) {
+    currentLang = lang;
+    localStorage.setItem("revo_lang", lang);
+    document.documentElement.lang = lang === "es" ? "es" : "en";
+    document.getElementById("langToggle").textContent = lang.toUpperCase();
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      if (i18n[key] && i18n[key][lang]) {
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+          el.placeholder = i18n[key][lang];
+        } else if (el.tagName === "OPTION") {
+          el.textContent = i18n[key][lang];
+        } else if (el.tagName === "TITLE") {
+          el.textContent = i18n[key][lang];
+        } else if (el.classList.contains("faq-q")) {
+          const span = el.querySelector("span:first-child");
+          if (span) span.textContent = i18n[key][lang];
+        } else {
+          el.textContent = i18n[key][lang];
+        }
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      const key = el.getAttribute("data-i18n-placeholder");
+      if (i18n[key] && i18n[key][lang]) {
+        el.placeholder = i18n[key][lang];
+      }
+    });
+  }
+
+  document.getElementById("langToggle").addEventListener("click", () => {
+    const newLang = currentLang === "es" ? "en" : "es";
+    translatePage(newLang);
+    showToast(newLang === "en" ? "Language switched to English" : "Idioma cambiado a Español");
+  });
+
+  // ===== DARK MODE =====
+  let isDark = localStorage.getItem("revo_theme") === "dark";
+
+  function applyTheme(dark) {
+    isDark = dark;
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    document.getElementById("themeToggle").innerHTML = dark ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
+    localStorage.setItem("revo_theme", dark ? "dark" : "light");
+  }
+
+  document.getElementById("themeToggle").addEventListener("click", () => applyTheme(!isDark));
+  applyTheme(isDark);
+
+  // ===== MOBILE MENU =====
   const navLinks = document.getElementById("navLinks");
   document.getElementById("menuBtn").addEventListener("click", () => navLinks.classList.toggle("open"));
   navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("open")));
 
+  // ===== PRODUCT FILTERS =====
   const filterButtons = document.querySelectorAll(".filter-btn");
   const productCards = document.querySelectorAll(".product-card");
   filterButtons.forEach(btn => {
@@ -843,6 +1355,7 @@
     });
   });
 
+  // ===== PRODUCT DATA =====
   const productData = {
     "Topes de estacionamiento":{
       icon:"🅿️",
@@ -854,7 +1367,7 @@
       validation:"Validación dimensional, resistencia al impacto y fijación."
     },
     "Protectores para cables":{
-      icon:"🔌",
+      icon:"bi-plug-fill",
       tagline:"Cobertura resistente para tendidos eléctricos y mangueras.",
       use:"Minería, industria y zonas de mantenimiento con tránsito de equipos.",
       ideal:"Ideal para instalaciones que requieren seguridad adicional en áreas con maquinaria móvil.",
@@ -864,7 +1377,7 @@
       validation:"Requiere ensayos de carga, abrasión y compatibilidad con el ambiente de operación."
     },
     "Losetas amortiguantes":{
-      icon:"🧱",
+      icon:"bi-grid-3x3-gap-fill",
       tagline:"Superficies seguras que reducen el impacto y mejoran el confort.",
       use:"Parques infantiles, gimnasios, colegios, patios y zonas deportivas.",
       ideal:"Perfecta para espacios con niños, entrenamientos y áreas de alto tráfico peatonal.",
@@ -874,7 +1387,7 @@
       validation:"Validación de absorción de impacto, deslizamiento y durabilidad."
     },
     "Cuñas para vehículos":{
-      icon:"🚛",
+      icon:"bi-truck-front-fill",
       tagline:"Seguridad simple para estacionamientos y zonas de carga.",
       use:"Vehículos pesados, talleres, transporte y operaciones mineras.",
       ideal:"Útil en rampas, estaciones de carga y parqueos de flotas pesadas.",
@@ -884,7 +1397,7 @@
       validation:"Requiere prueba de carga y validación de uso seguro."
     },
     "Pisos de caucho":{
-      icon:"🏋️",
+      icon:"bi-layers-fill",
       tagline:"Cobertura técnica para áreas de trabajo con alto desgaste.",
       use:"Gimnasios, talleres, áreas técnicas y espacios de alta circulación.",
       ideal:"Especial para espacios que necesitan mayor ergonomía y protección de superficies.",
@@ -894,7 +1407,7 @@
       validation:"Validación de desgaste, adherencia y comportamiento frente a aceites cuando corresponda."
     },
     "Caucho granulado":{
-      icon:"⚫",
+      icon:"bi-circle-fill",
       tagline:"Materia prima circular para soluciones técnicas a medida.",
       use:"Fabricantes de pisos, topes, protectores, mobiliario y soluciones técnicas.",
       ideal:"Pensado para empresas que integran materiales reciclados en sus productos.",
@@ -905,61 +1418,16 @@
     }
   };
 
+  // ===== MODAL =====
   const modal = document.getElementById("productModal");
   const closeModal = () => modal.classList.remove("open");
   document.getElementById("closeProductModal").onclick = closeModal;
   document.getElementById("closeProductModal2").onclick = closeModal;
   modal.addEventListener("click", e => { if(e.target === modal) closeModal(); });
 
-  document.querySelectorAll(".product-detail").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const name = btn.dataset.product;
-      const data = productData[name];
-      document.getElementById("modalProductTitle").textContent = name;
-      document.getElementById("modalProductBody").innerHTML = `
-        <div class="modal-body-grid">
-          <div class="product-modal-top">
-            <div class="product-modal-icon">${data.icon || "📦"}</div>
-            <div>
-              <p class="product-modal-tagline">${data.tagline || "Solución circular con valor técnico."}</p>
-              <p class="product-modal-ideal">${data.ideal || data.use}</p>
-            </div>
-          </div>
-
-          <div class="product-modal-benefit">
-            <strong>Beneficio clave</strong>
-            <p>${data.benefit || "Apoya la implementación de soluciones circulares con mayor trazabilidad."}</p>
-          </div>
-
-          <div class="product-modal-cards">
-            <div class="product-modal-card">
-              <h4>Orientado a</h4>
-              <p>${data.use}</p>
-            </div>
-            <div class="product-modal-card">
-              <h4>Valor agregado</h4>
-              <p>${data.advantage || "Mejora la seguridad y reduce costos operativos."}</p>
-            </div>
-            <div class="product-modal-card">
-              <h4>Uso recomendado</h4>
-              <p>${data.tagline}</p>
-            </div>
-          </div>
-
-          <div>
-            <h3>Características referenciales</h3>
-            <ul class="product-specs">${data.specs.map(x=>`<li>${x}</li>`).join("")}</ul>
-          </div>
-
-          <div class="product-modal-note">
-            <strong>Validación sugerida:</strong><br>${data.validation}
-          </div>
-        </div>`;
-      modal.classList.add("open");
-    });
-  });
   document.getElementById("modalQuoteBtn").addEventListener("click", closeModal);
 
+  // ===== MATCHING ENGINE =====
   const mapping = {
     automotriz:{
       seguridad:"Cuñas para vehículos",
@@ -1017,64 +1485,230 @@
     const priority = match >= 90 ? "Alta" : match >= 80 ? "Media-alta" : "Media";
 
     currentLead = {...data, product, match, days, mode, priority, createdAt:new Date().toISOString()};
-    document.getElementById("resultTitle").textContent = `Solución recomendada: ${product}`;
-    document.getElementById("resultText").textContent = `La solicitud de ${data.empresa} presenta una buena coincidencia con ${product}. La propuesta final deberá validar especificaciones, stock y transporte.`;
+    document.getElementById("resultTitle").textContent = `${currentLang === "en" ? "Recommended solution:" : "Solución recomendada:"} ${product}`;
+    document.getElementById("resultText").textContent = currentLang === "en"
+      ? `The request from ${data.empresa} shows a good match with ${product}. The final proposal should validate specifications, stock, and transportation.`
+      : `La solicitud de ${data.empresa} presenta una buena coincidencia con ${product}. La propuesta final deberá validar especificaciones, stock y transporte.`;
     document.getElementById("resultMatch").textContent = match + "%";
-    document.getElementById("resultDays").textContent = days + " días";
+    document.getElementById("resultDays").textContent = days + (currentLang === "en" ? " days" : " días");
     document.getElementById("resultMode").textContent = mode;
     document.getElementById("resultPriority").textContent = priority;
-    populatePrintProposal(currentLead);
+    populateProposalTemplate(currentLead);
     document.getElementById("quoteResult").classList.add("show");
     document.getElementById("quoteResult").scrollIntoView({behavior:"smooth",block:"nearest"});
+    updateLeadsCount();
   });
 
-  document.getElementById("saveLead").addEventListener("click", () => {
-    if(!currentLead) return;
-    const leads = JSON.parse(localStorage.getItem("revo_leads") || "[]");
-    leads.push(currentLead);
-    localStorage.setItem("revo_leads", JSON.stringify(leads));
-    showToast("Solicitud guardada localmente para la demostración.");
-  });
+  function populateProposalTemplate(data){
+    const l = currentLang;
+    const sectorLabel = {es:"Sector",en:"Sector"}[l];
+    const needLabel = {es:"Necesidad principal",en:"Main need"}[l];
+    const qtyLabel = {es:"Cantidad aproximada",en:"Approximate quantity"}[l];
+    const cityLabel = {es:"Ciudad de entrega",en:"Delivery city"}[l];
+    const emailLabel = {es:"Correo de contacto",en:"Contact email"}[l];
+    const specsLabel = {es:"Especificaciones",en:"Specifications"}[l];
+    const compatLabel = {es:"Compatibilidad",en:"Compatibility"}[l];
+    const etaLabel = {es:"Entrega estimada",en:"Estimated delivery"}[l];
+    const modeLabel = {es:"Modalidad",en:"Modality"}[l];
+    const prioLabel = {es:"Prioridad",en:"Priority"}[l];
+    const solutionTitle = {es:"Solución recomendada",en:"Recommended solution"}[l];
+    const subtitle = {es:"Propuesta de solución comercial",en:"Commercial solution proposal"}[l];
+    const companyLabel = {es:"Empresa",en:"Company"}[l];
+    const generated = {es:"Generado el",en:"Generated on"}[l];
+    const pDays = l === "en" ? `${data.days} days` : `${data.days} días`;
 
-  document.getElementById("printProposal").addEventListener("click", () => {
-    if(!currentLead){
-      showToast("Completa el formulario antes de imprimir la propuesta.");
-      return;
-    }
-    populatePrintProposal(currentLead);
-    window.print();
-  });
+    document.getElementById("propLangSubtitle").textContent = subtitle;
+    document.getElementById("propLabelCompany").textContent = companyLabel;
+    document.getElementById("propCompany").textContent = data.empresa;
+    document.getElementById("propLabelSector").textContent = sectorLabel;
+    document.getElementById("propSector").textContent = data.sector;
+    document.getElementById("propLabelNeed").textContent = needLabel;
+    document.getElementById("propNeed").textContent = data.necesidad;
+    document.getElementById("propLabelQty").textContent = qtyLabel;
+    document.getElementById("propQty").textContent = data.cantidad;
+    document.getElementById("propLabelCity").textContent = cityLabel;
+    document.getElementById("propCity").textContent = data.ciudad;
+    document.getElementById("propLabelEmail").textContent = emailLabel;
+    document.getElementById("propEmail").textContent = data.correo;
+    document.getElementById("propLabelSpecs").textContent = specsLabel;
+    document.getElementById("propSpecs").textContent = data.detalle || (l === "en" ? "Not specified" : "No se especificó");
+    document.getElementById("propLabelSolution").textContent = solutionTitle;
+    document.getElementById("propProduct").textContent = data.product;
+    document.getElementById("propLabelCompat").textContent = compatLabel;
+    document.getElementById("propMatch").textContent = data.match + "%";
+    document.getElementById("propLabelDelivery").textContent = etaLabel;
+    document.getElementById("propDays").textContent = pDays;
+    document.getElementById("propLabelMode").textContent = modeLabel;
+    document.getElementById("propMode").textContent = data.mode;
+    document.getElementById("propLabelPriority").textContent = prioLabel;
+    document.getElementById("propPriority").textContent = data.priority;
+    document.getElementById("propLabelGenerated").textContent = generated;
+    document.getElementById("propDate").textContent = new Date(data.createdAt).toLocaleDateString(l === "en" ? "en-US" : "es-PE");
 
-  function populatePrintProposal(data){
     document.getElementById("printEmpresa").textContent = data.empresa;
     document.getElementById("printSector").textContent = data.sector;
     document.getElementById("printNecesidad").textContent = data.necesidad;
     document.getElementById("printCantidad").textContent = data.cantidad;
     document.getElementById("printCiudad").textContent = data.ciudad;
-    document.getElementById("printDetalle").textContent = data.detalle || "No se especificó detalle adicional.";
+    document.getElementById("printDetalle").textContent = data.detalle || (l === "en" ? "No additional detail specified." : "No se especificó detalle adicional.");
     document.getElementById("printProducto").textContent = data.product;
-    document.getElementById("printCreatedAt").textContent = new Date(data.createdAt).toLocaleString("es-PE");
+    document.getElementById("printCreatedAt").textContent = new Date(data.createdAt).toLocaleString(l === "en" ? "en-US" : "es-PE");
   }
 
+  // ===== IMPACT CALCULATOR =====
   const impactRange = document.getElementById("impactTons");
   const updateImpact = () => {
     const tons = Number(impactRange.value);
     document.getElementById("impactTonsLabel").textContent = tons;
-    document.getElementById("impactTires").textContent = Math.round(tons * 50).toLocaleString("es-PE");
+    document.getElementById("impactTires").textContent = Math.round(tons * 50).toLocaleString(currentLang === "en" ? "en-US" : "es-PE");
     document.getElementById("impactMaterial").textContent = tons + " t";
     document.getElementById("impactTrips").textContent = Math.max(1,Math.ceil(tons / 6));
   };
   impactRange.addEventListener("input", updateImpact);
   document.getElementById("calcImpact").addEventListener("click", () => {
     updateImpact();
-    showToast("Impacto referencial actualizado.");
+    showImpactChart();
+    showToast(currentLang === "en" ? "Impact reference updated." : "Impacto referencial actualizado.");
   });
   updateImpact();
 
+  // ===== CHART =====
+  let impactChart = null;
+
+  function showImpactChart() {
+    const wrap = document.getElementById("chartWrap");
+    wrap.classList.add("show");
+
+    const tons = Number(impactRange.value);
+    const tires = Math.round(tons * 50);
+    const co2 = Math.round(tons * 1.2);
+    const energy = Math.round(tons * 420);
+
+    if (impactChart) impactChart.destroy();
+
+    const ctx = document.getElementById("impactChart").getContext("2d");
+    impactChart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: currentLang === "en"
+          ? ["NFU reused", "CO₂ avoided (t)", "Energy saved (kWh)"]
+          : ["NFU aprovechados", "CO₂ evitado (t)", "Energía ahorrada (kWh)"],
+        datasets: [{
+          label: currentLang === "en" ? "Environmental impact" : "Impacto ambiental",
+          data: [tires, co2, energy],
+          backgroundColor: ["#168a58", "#35c17f", "#efb43f"],
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: { color: "#65736c" },
+            grid: { color: "rgba(219,231,224,.5)" }
+          },
+          x: {
+            ticks: { color: "#65736c" }
+          }
+        }
+      }
+    });
+  }
+
+  // ===== FAQ =====
   document.querySelectorAll(".faq-q").forEach(btn => {
     btn.addEventListener("click", () => btn.parentElement.classList.toggle("open"));
   });
 
+  // ===== LEADS DASHBOARD =====
+  function updateLeadsCount() {
+    const leads = JSON.parse(localStorage.getItem("revo_leads") || "[]");
+    const el = document.getElementById("leadsCount");
+    if (el) el.innerHTML = `<i class="bi bi-clipboard-data"></i> ${leads.length}`;
+  }
+
+  document.getElementById("leadsCount").addEventListener("click", () => {
+    const modal = document.getElementById("leadsModal");
+    const body = document.getElementById("leadsBody");
+    const leads = JSON.parse(localStorage.getItem("revo_leads") || "[]");
+
+    if (leads.length === 0) {
+      body.innerHTML = `<div class="lead-empty" data-i18n="leads.empty">${currentLang === "en" ? "No saved requests yet." : "No hay solicitudes guardadas aún."}</div>`;
+    } else {
+      const rows = leads.map((l, i) => {
+        const badgeClass = l.match >= 90 ? "high" : l.match >= 80 ? "medium" : "low";
+        const pLabel = currentLang === "en" ? "Priority" : "Prioridad";
+        return `<tr>
+          <td>${l.empresa}</td>
+          <td>${l.product}</td>
+          <td><span class="badge ${badgeClass}">${l.match}%</span></td>
+          <td><span class="badge ${badgeClass}">${pLabel}: ${l.priority}</span></td>
+          <td>${new Date(l.createdAt).toLocaleDateString(currentLang === "en" ? "en-US" : "es-PE")}</td>
+        </tr>`;
+      }).join("");
+
+      body.innerHTML = `<table class="lead-table">
+        <thead><tr>
+          <th>${currentLang === "en" ? "Company" : "Empresa"}</th>
+          <th>${currentLang === "en" ? "Product" : "Producto"}</th>
+          <th>${currentLang === "en" ? "Match" : "Compat."}</th>
+          <th>${currentLang === "en" ? "Status" : "Estado"}</th>
+          <th>${currentLang === "en" ? "Date" : "Fecha"}</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+    }
+
+    modal.classList.add("open");
+    updateLeadsCount();
+  });
+
+  document.getElementById("closeLeadsModal").onclick = () => document.getElementById("leadsModal").classList.remove("open");
+  document.getElementById("closeLeadsModal2").onclick = () => document.getElementById("leadsModal").classList.remove("open");
+  document.getElementById("leadsModal").addEventListener("click", e => {
+    if(e.target === document.getElementById("leadsModal")) {
+      document.getElementById("leadsModal").classList.remove("open");
+    }
+  });
+
+  document.getElementById("clearLeads").addEventListener("click", () => {
+    if (confirm(currentLang === "en" ? "Delete all saved requests?" : "¿Eliminar todas las solicitudes guardadas?")) {
+      localStorage.removeItem("revo_leads");
+      document.getElementById("leadsModal").classList.remove("open");
+      updateLeadsCount();
+      showToast(currentLang === "en" ? "All requests cleared." : "Todas las solicitudes eliminadas.");
+    }
+  });
+
+  updateLeadsCount();
+
+  // ===== SCROLL REVEAL =====
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale").forEach(el => {
+    revealObserver.observe(el);
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("show");
+    }
+  });
+
+  // ===== PWA =====
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
+
+  // ===== TOAST =====
   function showToast(message){
     const toast = document.getElementById("toast");
     toast.textContent = message;
@@ -1082,6 +1716,9 @@
     clearTimeout(window.toastTimer);
     window.toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
   }
+
+  // ===== INIT =====
+  translatePage(currentLang);
 </script>
 </body>
 </html>
